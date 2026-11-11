@@ -1,0 +1,18 @@
+# Studio RAYEONJIN
+
+Studio RAYEONJIN 소개 페이지. 빌드 도구 없는 정적 사이트(HTML·CSS·JS)이며 외부 폰트·CDN·분석 도구를 쓰지 않습니다.
+
+## 로컬 미리보기
+
+```bash
+python3 -m http.server 4321 --directory .
+```
+
+## 구성
+
+- `index.html` 본문 (앱 소개, 설치 방식, 응원하기, FAQ)
+- `styles.css` 라이트/다크 테마
+- `main.js` 상단을 산책하는 고양이(Catoshi 스프라이트), 명령어 복사 버튼
+- `assets/` 앱 아이콘·스크린샷·스튜디오 마크
+
+새 앱은 `index.html`의 `#apps` 섹션에 카드로 추가합니다.
