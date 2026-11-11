@@ -10,9 +10,9 @@ python3 -m http.server 4321 --directory .
 
 ## 구성
 
-- `index.html` 본문 (앱 소개, 설치 방식, 응원하기, FAQ)
+- `index.html` 본문 (스튜디오 소개, 작업, 설치 방식, 응원하기, FAQ)
 - `styles.css` 라이트/다크 테마
-- `main.js` 상단을 산책하는 고양이(Catoshi 스프라이트), 명령어 복사 버튼
+- `main.js` 명령어 복사 버튼
 - `assets/` 앱 아이콘·스크린샷·스튜디오 마크
 
-새 앱은 `index.html`의 `#apps` 섹션에 카드로 추가합니다.
+새 작업은 `index.html`의 `#works` 섹션에 플랫폼별 제목 아래 카드로 추가합니다.
