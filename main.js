@@ -82,9 +82,13 @@
   }
 
   cat.addEventListener("click", () => {
-    const now = performance.now();
-    rest(now, "happy", 1400);
     show(FRAMES.happy[0]);
+    if (reduced.matches) {
+      // No animation loop is running; restore the resting pose ourselves.
+      setTimeout(() => show(FRAMES.loaf[0]), 1400);
+      return;
+    }
+    rest(performance.now(), "happy", 1400);
   });
 
   if (reduced.matches) {
