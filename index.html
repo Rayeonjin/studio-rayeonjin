@@ -8,6 +8,14 @@
   <meta property="og:title" content="Studio RAYEONJIN">
   <meta property="og:description" content="Small, kind tools for macOS. 소스를 공개하고, 직접 빌드해서 씁니다.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://studio-rayeonjin.vercel.app/">
+  <meta property="og:image" content="https://studio-rayeonjin.vercel.app/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Studio RAYEONJIN, 작고 다정한 Mac 도구를 만듭니다.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://studio-rayeonjin.vercel.app/">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="theme-color" content="#f5efe4" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
@@ -24,8 +32,8 @@
       </a>
       <nav class="menu" aria-label="주요 메뉴">
         <a href="#apps">앱</a>
-        <a href="#build">설치 방식</a>
-        <a href="#support">응원하기</a>
+        <a href="#build">설치<span class="long"> 방식</span></a>
+        <a href="#support">응원<span class="long">하기</span></a>
         <a href="#faq">FAQ</a>
       </nav>
       <a class="menu-gh" href="https://github.com/Rayeonjin">GitHub</a>
@@ -40,7 +48,7 @@
       <h1>작고 다정한<br>Mac 도구를 만듭니다.</h1>
       <p class="hero-en">Small, kind tools for macOS.</p>
       <p class="lede">
-        로그인도, 서버도, 추적도 없이 내 Mac 안에서 조용히 돌아가는 앱.
+        계정도, 추적도 없이 내 Mac 안에서 조용히 돌아가는 앱.
         Studio RAYEONJIN은 소스를 그대로 공개하고, 필요한 분이 직접 받아 빌드해서 쓰는 방식으로 앱을 나눕니다.
       </p>
       <div class="cta">
@@ -76,7 +84,7 @@
       <article class="app app-feature">
         <div class="app-media">
           <div class="shot-bar">
-            <img src="assets/catoshi-menubar.gif" alt="macOS 메뉴바를 걷는 Catoshi 고양이와 BTC 시세 표시" loading="lazy" width="1260" height="390">
+            <img src="assets/catoshi-menubar.png" alt="macOS 메뉴바에 앉은 Catoshi 고양이와 BTC 시세, 김치프리미엄 표시" loading="lazy" width="1100" height="30">
           </div>
           <img class="shot-panel" src="assets/catoshi-panel-card.jpg" alt="메뉴바를 누르면 열리는 Catoshi 시세 패널: Binance, Upbit 시세와 김치프리미엄" loading="lazy" width="1040" height="700">
           <p class="shot-note">가상 시세로 재현한 화면입니다.</p>
@@ -155,7 +163,7 @@
           </li>
           <li>
             <h3>소스 받기</h3>
-            <p>앱의 GitHub Releases에서 원하는 버전의 <strong>Source code (zip)</strong>를 받아 압축을 풉니다.</p>
+            <p>앱의 GitHub 페이지에서 소스를 받아 압축을 풉니다. 정식 릴리스가 있는 앱(예: Catoshi)은 Releases의 <strong>Source code (zip)</strong>를 받는 것이 가장 안정적입니다.</p>
           </li>
           <li>
             <h3>설치 스크립트 실행</h3>
@@ -187,7 +195,7 @@
             <span class="support-desc">Ko-fi로 응원하기</span>
           </a>
         </div>
-        <p class="note">후원은 사용권이나 기능 제공의 대가가 아니며, 기능·업데이트·지원 우선순위에 차이가 없습니다. 앱 안에는 후원 안내를 넣지 않습니다.</p>
+        <p class="note">후원은 사용권이나 기능 제공의 대가가 아니며, 기능·업데이트·지원 우선순위에 차이가 없습니다.</p>
       </div>
     </section>
 
@@ -203,7 +211,7 @@
         </details>
         <details>
           <summary>직접 빌드한 앱, 안전한가요?</summary>
-          <p>소스가 모두 공개되어 있어 무엇이 실행되는지 확인할 수 있습니다. 설치 스크립트는 빌드 후 검증을 거쳐 앱을 설치하고, 실패하면 기존 앱을 지우지 않습니다. 그래도 공식 릴리스 ZIP을 받는 것을 권장합니다.</p>
+          <p>소스가 모두 공개되어 있어 무엇이 실행되는지 확인할 수 있습니다. 예를 들어 Catoshi의 설치 스크립트는 빌드한 앱을 검증한 뒤 설치하고, 실패하면 기존 앱을 지우지 않습니다. 소스는 반드시 Rayeonjin GitHub 저장소에서 받아 주세요.</p>
         </details>
         <details>
           <summary>Mac App Store에는 안 나오나요?</summary>
