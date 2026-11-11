@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio RAYEONJIN</title>
+  <meta name="description" content="Studio RAYEONJIN은 내 Mac 안에서 조용히 돌아가는 작고 다정한 macOS 도구를 만듭니다. 소스를 공개하고, 직접 빌드해서 씁니다.">
+  <meta property="og:title" content="Studio RAYEONJIN">
+  <meta property="og:description" content="Small, kind tools for macOS. 소스를 공개하고, 직접 빌드해서 씁니다.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f5efe4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- macOS 메뉴바를 닮은 상단 바. 고양이가 이 위를 산책합니다. -->
+  <header class="menubar">
+    <div class="menubar-inner">
+      <a class="brand" href="#top" aria-label="Studio RAYEONJIN 처음으로">
+        <img src="assets/mark.svg" alt="" width="18" height="18">
+        <span>Studio RAYEONJIN</span>
+      </a>
+      <nav class="menu" aria-label="주요 메뉴">
+        <a href="#apps">앱</a>
+        <a href="#build">설치 방식</a>
+        <a href="#support">응원하기</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="menu-gh" href="https://github.com/Rayeonjin">GitHub</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="cat-track" aria-hidden="true"><div class="cat" id="cat" title="Catoshi"></div></div>
+
+    <section class="hero wrap">
+      <p class="eyebrow">./Rayeonjin · Korea</p>
+      <h1>작고 다정한<br>Mac 도구를 만듭니다.</h1>
+      <p class="hero-en">Small, kind tools for macOS.</p>
+      <p class="lede">
+        로그인도, 서버도, 추적도 없이 내 Mac 안에서 조용히 돌아가는 앱.
+        Studio RAYEONJIN은 소스를 그대로 공개하고, 필요한 분이 직접 받아 빌드해서 쓰는 방식으로 앱을 나눕니다.
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#apps">앱 둘러보기</a>
+        <a class="btn" href="#build">왜 직접 빌드하나요?</a>
+      </div>
+    </section>
+
+    <section class="wrap principles" aria-label="작업 원칙">
+      <article>
+        <span class="num">01</span>
+        <h2>내 Mac 안에서</h2>
+        <p>계정, 클라우드, 분석 도구를 넣지 않습니다. 기록과 설정은 사용자의 Mac에만 남습니다.</p>
+      </article>
+      <article>
+        <span class="num">02</span>
+        <h2>소스는 그대로 공개</h2>
+        <p>무엇이 실행되는지 누구나 열어볼 수 있습니다. 변경 이력과 데이터 출처까지 문서로 남깁니다.</p>
+      </article>
+      <article>
+        <span class="num">03</span>
+        <h2>각자 직접 빌드</h2>
+        <p>완성된 .app 대신 소스를 나눕니다. Apple의 무료 개발 도구만 있으면 내 Mac에서 바로 만들 수 있습니다.</p>
+      </article>
+    </section>
+
+    <section id="apps" class="wrap section">
+      <header class="section-head">
+        <p class="eyebrow">Apps</p>
+        <h2>지금 만들고 있는 것</h2>
+      </header>
+
+      <article class="app app-feature">
+        <div class="app-media">
+          <div class="shot-bar">
+            <img src="assets/catoshi-menubar.gif" alt="macOS 메뉴바를 걷는 Catoshi 고양이와 BTC 시세 표시" loading="lazy" width="1260" height="390">
+          </div>
+          <img class="shot-panel" src="assets/catoshi-panel-card.jpg" alt="메뉴바를 누르면 열리는 Catoshi 시세 패널: Binance, Upbit 시세와 김치프리미엄" loading="lazy" width="1040" height="700">
+          <p class="shot-note">가상 시세로 재현한 화면입니다.</p>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <img class="app-icon" src="assets/catoshi-icon.png" alt="" width="64" height="64">
+            <div>
+              <h3>Catoshi <span class="tag">Beta</span></h3>
+              <p class="app-en">A little cat that lives in your menu bar.</p>
+            </div>
+          </div>
+          <p>메뉴바를 산책하고, 방향을 돌리고, 식빵을 굽는 작은 고양이. 그 곁에서 BTC 시세와 김치프리미엄, 시장 흐름을 함께 확인합니다. 거래소 계정이나 API Key는 필요 없습니다.</p>
+          <ul class="meta">
+            <li>macOS 13+</li>
+            <li>Apple Silicon · Intel</li>
+            <li>비상업적 개인 사용 (Catoshi Community License)</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Rayeonjin/Catoshi">GitHub</a>
+            <a href="https://github.com/Rayeonjin/Catoshi/releases">Releases</a>
+            <a href="https://github.com/Rayeonjin/Catoshi/blob/main/docs/BUILDING.md">설치 가이드</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="app-grid">
+        <article class="app">
+          <div class="app-title">
+            <img class="app-icon" src="assets/memoweaver-icon.png" alt="" width="64" height="64">
+            <div>
+              <h3>MemoWeaver <span class="tag tag-quiet">개발 중</span></h3>
+              <p class="app-en">Local-first notes for macOS.</p>
+            </div>
+          </div>
+          <p>빠르게 적고, 나중에 다시 이어 붙이는 노트. Markdown을 쓰고 싶을 때만 쓰고, 선택적으로 로컬 AI가 생각 사이의 연결을 찾아줍니다. 원본 텍스트는 언제나 안전하게.</p>
+          <ul class="meta">
+            <li>macOS 14+</li>
+            <li>Apache-2.0</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Rayeonjin/MemoWeaver">GitHub</a>
+            <a href="https://github.com/Rayeonjin/MemoWeaver#build-from-source-macos-14">빌드 방법</a>
+          </div>
+        </article>
+
+        <article class="app app-next">
+          <div class="next-cat" aria-hidden="true"></div>
+          <h3>다음 앱 준비 중</h3>
+          <p>작업실에서 몇 가지 도구가 자라고 있어요. 공개되면 GitHub과 Telegram에서 먼저 알려드릴게요.</p>
+          <div class="links">
+            <a href="https://t.me/Rayeonjin">Telegram 공지 받기</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="build" class="wrap section">
+      <header class="section-head">
+        <p class="eyebrow">How to install</p>
+        <h2>다운로드 대신, 직접 빌드</h2>
+      </header>
+
+      <div class="build">
+        <div class="build-why">
+          <p>Studio RAYEONJIN은 Apple의 유료 개발자 프로그램에 등록하지 않은 개인 스튜디오입니다. 그래서 Apple 공증을 거친 <code>.app</code>이나 <code>.dmg</code>를 배포하지 않습니다.</p>
+          <p>대신 소스를 공개합니다. 각자 자신의 Mac에서 빌드하면 무엇이 설치되는지 직접 확인할 수 있고, 개발자 계정이나 결제도 필요 없습니다.</p>
+          <p class="note">터미널이 처음이어도 괜찮아요. 앱마다 처음부터 따라 할 수 있는 설치 가이드를 함께 둡니다.</p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <h3>Apple 개발 도구 설치</h3>
+            <p>터미널을 열고 아래 명령을 실행합니다. 무료이며, 이미 설치되어 있으면 그렇다고 알려줍니다.</p>
+            <div class="code"><code>xcode-select --install</code><button type="button" class="copy" data-copy="xcode-select --install">복사</button></div>
+          </li>
+          <li>
+            <h3>소스 받기</h3>
+            <p>앱의 GitHub Releases에서 원하는 버전의 <strong>Source code (zip)</strong>를 받아 압축을 풉니다.</p>
+          </li>
+          <li>
+            <h3>설치 스크립트 실행</h3>
+            <p>압축을 푼 폴더에서 앱이 안내하는 스크립트를 실행합니다. 예를 들어 Catoshi는 이렇게요.</p>
+            <div class="code"><code>bash setup.sh</code><button type="button" class="copy" data-copy="bash setup.sh">복사</button></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="support" class="wrap section">
+      <header class="section-head">
+        <p class="eyebrow">Support</p>
+        <h2>개발 응원하기</h2>
+      </header>
+      <div class="support">
+        <p class="support-lede">앱을 즐겁게 쓰고 계신다면 자발적인 응원을 보내주실 수 있어요. 다음 앱을 만드는 데 큰 힘이 됩니다.</p>
+        <div class="support-links">
+          <a class="support-card" href="https://fairy.hada.io/@catoshi">
+            <span class="support-name">Fairy</span>
+            <span class="support-desc">Catoshi 개발 응원하기</span>
+          </a>
+          <a class="support-card" href="https://buymeacoffee.com/rayeonjin">
+            <span class="support-name">Buy Me a Coffee</span>
+            <span class="support-desc">커피 한 잔 보내기</span>
+          </a>
+          <a class="support-card" href="https://ko-fi.com/rayeonjin">
+            <span class="support-name">Ko-fi</span>
+            <span class="support-desc">Ko-fi로 응원하기</span>
+          </a>
+        </div>
+        <p class="note">후원은 사용권이나 기능 제공의 대가가 아니며, 기능·업데이트·지원 우선순위에 차이가 없습니다. 앱 안에는 후원 안내를 넣지 않습니다.</p>
+      </div>
+    </section>
+
+    <section id="faq" class="wrap section">
+      <header class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2>자주 묻는 질문</h2>
+      </header>
+      <div class="faq">
+        <details>
+          <summary>정말 무료인가요?</summary>
+          <p>네. 앱을 받고 빌드해서 쓰는 데 비용이 들지 않습니다. 다만 앱마다 라이선스가 달라요. Catoshi는 비상업적 개인 사용만 허용하고, MemoWeaver는 Apache-2.0입니다. 각 저장소의 LICENSE를 확인해 주세요.</p>
+        </details>
+        <details>
+          <summary>직접 빌드한 앱, 안전한가요?</summary>
+          <p>소스가 모두 공개되어 있어 무엇이 실행되는지 확인할 수 있습니다. 설치 스크립트는 빌드 후 검증을 거쳐 앱을 설치하고, 실패하면 기존 앱을 지우지 않습니다. 그래도 공식 릴리스 ZIP을 받는 것을 권장합니다.</p>
+        </details>
+        <details>
+          <summary>Mac App Store에는 안 나오나요?</summary>
+          <p>현재는 계획이 없습니다. 개인 스튜디오로서 소스를 공개하고 각자 빌드하는 방식을 택했습니다.</p>
+        </details>
+        <details>
+          <summary>문제가 생기면 어디로 알려주나요?</summary>
+          <p>해당 앱의 GitHub 저장소나 <a href="https://t.me/Rayeonjin">Telegram</a>으로 알려주세요. 앱 버전, macOS 버전과 칩, 실패한 단계와 오류 메시지를 함께 적어주시면 큰 도움이 됩니다. 개인 프로젝트라 응답 시간을 보장하지는 못해요.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="brand brand-foot">
+        <img src="assets/mark.svg" alt="" width="20" height="20">
+        <span>Studio RAYEONJIN</span>
+      </div>
+      <nav class="footer-links" aria-label="외부 링크">
+        <a href="https://github.com/Rayeonjin">GitHub</a>
+        <a href="https://t.me/Rayeonjin">Telegram</a>
+      </nav>
+      <p class="fine">© 2026 Rayeonjin · 이 사이트는 쿠키와 분석 도구를 사용하지 않습니다.</p>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
