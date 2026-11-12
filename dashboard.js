@@ -194,7 +194,9 @@
   // ---------- repo table ----------
   function renderRepos(repos) {
     const tbody = document.querySelector("#repo-table tbody");
-    tbody.replaceChildren(...repos.map((r) => {
+    // Works first (oldest to newest), this site last.
+    const ordered = [...repos].sort((a, b) => Number(a.site) - Number(b.site));
+    tbody.replaceChildren(...ordered.map((r) => {
       const name = el("td", {}, el("a", { href: r.url, text: r.name }), r.site ? el("span", { class: "pill", text: t("repo.thisSite") }) : null);
       const ver = r.latest
         ? el("td", {}, el("a", { href: r.latest.url, text: r.latest.tag }), r.latest.prerelease ? el("span", { class: "pill", text: t("repo.beta") }) : null)
