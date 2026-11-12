@@ -10,7 +10,7 @@ python3 -m http.server 4321 --directory .
 
 ## 구성
 
-- `index.html` 본문 (스튜디오 소개, 작업, 연혁, 개발 현황, 응원하기, FAQ)
+- `index.html` 본문 (스튜디오 소개, 작업, 개발 현황, 연혁, 응원하기, FAQ)
 - `styles.css` 라이트/다크 테마
 - `assets/` 앱 아이콘·스크린샷·스튜디오 마크
 
