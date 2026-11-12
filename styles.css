@@ -59,6 +59,18 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 h1, h2, h3, h4 { margin: 0; line-height: 1.25; letter-spacing: -0.02em; }
 p { margin: 0; }
+:lang(zh) body, body:lang(zh) {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  word-break: normal; line-break: strict;
+}
+:lang(en) body, :lang(es) body, body:lang(en), body:lang(es) { word-break: normal; }
+:lang(es) p { hyphens: auto; }
+.hero-en:empty { display: none; }
+/* Latin-script copy runs longer than Korean; give paragraphs a little more room. */
+:lang(en) .lede, :lang(es) .lede, :lang(en) .about-lede, :lang(es) .about-lede { max-width: 46em; }
+:lang(en) .platform-note, :lang(es) .platform-note, :lang(en) .section-lede, :lang(es) .section-lede { max-width: 56em; }
+/* Hide translatable text until the chosen language is applied (no Korean flash). */
+.i18n-pending main, .i18n-pending .menu, .i18n-pending footer { visibility: hidden; }
 h1, h2, h3, h4 { text-wrap: balance; }
 p, li, summary, .support-desc { text-wrap: pretty; }
 /* Each sentence starts on its own line; .nw keeps short phrases together. */
@@ -86,8 +98,22 @@ code { font-family: var(--mono); font-size: 0.9em; }
 .menu a, .menu-gh { text-decoration: none; color: var(--ink-soft); }
 .menu a:hover, .menu-gh:hover { color: var(--ink); }
 .menu-gh { font-weight: 600; }
+.lang-picker {
+  margin-left: auto; flex: none; position: relative;
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 32px; padding: 0 10px 0 9px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--card); color: var(--ink-soft); cursor: pointer;
+}
+.lang-picker:hover { color: var(--ink); border-color: var(--ink-faint); }
+.lang-picker:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lang-picker svg { width: 15px; height: 15px; flex: none; }
+.lang-picker select {
+  appearance: none; -webkit-appearance: none; border: 0; background: transparent;
+  font: 600 13px var(--sans); color: inherit; cursor: pointer; padding: 0; outline: none;
+}
+.lang-picker select option { color: #241d15; background: #fbf7f0; }
 .theme-toggle {
-  margin-left: auto; flex: none;
+  flex: none;
   width: 32px; height: 32px; display: grid; place-items: center;
   border: 1px solid var(--line); border-radius: 999px;
   background: var(--card); color: var(--ink-soft); cursor: pointer;
@@ -208,8 +234,14 @@ code { font-family: var(--mono); font-size: 0.9em; }
 .timeline .timeline-empty::before { display: none; }
 .btn-small { height: 38px; padding: 0 18px; font-size: 14px; margin-top: 18px; cursor: pointer; font-family: inherit; color: var(--ink); }
 
+.history-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 18px; }
+.history-actions .btn-small { margin-top: 0; }
+.rss-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent-ink); text-decoration: none; }
+.rss-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.rss-link svg { width: 16px; height: 16px; }
+
 /* ---------- dashboard ---------- */
-.updated { color: var(--ink-faint); font-size: 14px; }
+.updated { color: var(--ink-faint); font-size: 14px; white-space: nowrap; }
 .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
 .tile {
   background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
@@ -299,9 +331,14 @@ code { font-family: var(--mono); font-size: 0.9em; }
   .app-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
-  .menu { gap: 12px; white-space: nowrap; }
-  .menu .nav-wide, .menu-gh { display: none; }
-  .menubar-inner { gap: 12px; }
+  .menubar-inner { flex-wrap: wrap; height: auto; padding-top: 8px; gap: 8px 10px; }
+  .menu-gh { display: none; }
+  .menu {
+    order: 3; width: 100%; gap: 18px; white-space: nowrap; overflow-x: auto; scrollbar-width: none;
+    padding: 2px 0 9px; margin-right: -16px; padding-right: 16px;
+  }
+  .menu::-webkit-scrollbar { display: none; }
+  html { scroll-padding-top: 96px; }
   .support-links { grid-template-columns: 1fr; }
   .tiles { grid-template-columns: 1fr 1fr; }
   .tile-value { font-size: 26px; }

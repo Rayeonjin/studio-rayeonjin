@@ -1,23 +1,41 @@
-// Timeline and dashboard, filled from /api/stats (a Vercel function that reads
-// the Rayeonjin GitHub organization and is cached for an hour).
+// Timeline and dashboard, filled from data/stats.json (rebuilt every few hours
+// by a GitHub Actions workflow). Text comes from window.I18N and is redrawn
+// when the language changes.
 (() => {
-  const TZ = "Asia/Seoul";
+  const TZ_OFFSET_MS = 9 * 60 * 60 * 1000; // dates are shown in Korea time
   const TIMELINE_INITIAL = 5;
 
-  const fmtDate = new Intl.DateTimeFormat("ko-KR", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
-  const fmtShort = new Intl.DateTimeFormat("ko-KR", { timeZone: TZ, month: "numeric", day: "numeric" });
-  const dot = (d) => fmtDate.format(new Date(d)).replace(/\.\s?/g, ".").replace(/\.$/, "");
-  const short = (d) => fmtShort.format(new Date(d)).replace(/\.\s?/g, "/").replace(/\/$/, "");
+  const I = () => window.I18N;
+  const t = (k, vars) => (I() ? I().t(k, vars) : k);
+  const lang = () => (I() ? I().lang : "ko");
+  const locale = () => (I() ? I().locale : "ko-KR");
+
+  // Calendar parts of a timestamp in Korea time.
+  function parts(iso) {
+    const d = new Date(new Date(iso).getTime() + TZ_OFFSET_MS);
+    return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate() };
+  }
+  const pad = (n) => String(n).padStart(2, "0");
+  // Full date: 2026.11.11 in Korean, ISO 2026-11-11 elsewhere.
+  function fullDate(iso) {
+    const p = parts(iso);
+    return lang() === "ko" ? `${p.y}.${pad(p.m)}.${pad(p.d)}` : `${p.y}-${pad(p.m)}-${pad(p.d)}`;
+  }
+  // Short date for the chart: day/month in Spanish, month/day otherwise.
+  function shortDate(iso) {
+    const p = parts(iso);
+    return lang() === "es" ? `${p.d}/${p.m}` : `${p.m}/${p.d}`;
+  }
 
   function relative(iso) {
-    const diff = Date.now() - new Date(iso).getTime();
-    const min = Math.round(diff / 60000);
-    if (min < 1) return "방금";
-    if (min < 60) return `${min}분 전`;
+    const sec = (new Date(iso).getTime() - Date.now()) / 1000;
+    if (Math.abs(sec) < 60) return t("time.justNow");
+    const rtf = new Intl.RelativeTimeFormat(locale(), { numeric: "auto" });
+    const min = Math.round(sec / 60);
+    if (Math.abs(min) < 60) return rtf.format(min, "minute");
     const h = Math.round(min / 60);
-    if (h < 24) return `${h}시간 전`;
-    const d = Math.round(h / 24);
-    return `${d}일 전`;
+    if (Math.abs(h) < 24) return rtf.format(h, "hour");
+    return rtf.format(Math.round(h / 24), "day");
   }
 
   const el = (tag, attrs = {}, ...kids) => {
@@ -32,54 +50,73 @@
   };
 
   // ---------- timeline ----------
+  let timelineOpen = false;
+
+  function eventTitle(e) {
+    if (e.kind === "created") return e.repo === "studio-rayeonjin" ? t("created.site") : t("created.repo", { repo: e.repo });
+    // GitHub release names are written in Korean; other languages get "Repo vX.Y.Z".
+    if (lang() === "ko") return e.title;
+    return `${e.repo} ${e.tag || ""}`.trim();
+  }
+
+  function eventKind(e) {
+    if (e.kind === "release") return t(e.prerelease ? "kind.prerelease" : "kind.release");
+    if (e.kind === "tag") return t("kind.tag");
+    return t("kind.created");
+  }
+
   function renderTimeline(items) {
     const list = document.getElementById("timeline");
     const more = document.getElementById("timeline-more");
     list.replaceChildren();
     if (!items.length) {
-      list.append(el("li", { class: "timeline-empty", text: "아직 표시할 기록이 없습니다." }));
+      list.append(el("li", { class: "timeline-empty", text: t("timeline.empty") }));
+      more.hidden = true;
       return;
     }
-    items.forEach((t, i) => {
-      const kindLabel = t.kind === "release" ? (t.prerelease ? "베타 릴리스" : "릴리스")
-        : t.kind === "tag" ? "버전 태그" : "공개";
-      const title = t.url
-        ? el("a", { class: "t-title", href: t.url, text: t.title })
-        : el("span", { class: "t-title", text: t.title });
-      const li = el("li", { class: `is-${t.kind}` },
-        el("time", { datetime: t.date, text: dot(t.date) }),
-        el("div", {}, title, el("span", { class: "t-meta", text: `${t.repo} · ${kindLabel}` })));
-      if (i >= TIMELINE_INITIAL) li.hidden = true;
-      list.append(li);
+    items.forEach((e) => {
+      const title = e.url
+        ? el("a", { class: "t-title", href: e.url, text: eventTitle(e) })
+        : el("span", { class: "t-title", text: eventTitle(e) });
+      list.append(el("li", { class: `is-${e.kind}` },
+        el("time", { datetime: e.date, text: fullDate(e.date) }),
+        el("div", {}, title, el("span", { class: "t-meta", text: `${e.repo} · ${eventKind(e)}` }))));
     });
-    if (items.length > TIMELINE_INITIAL) {
-      let open = false;
-      const sync = () => {
-        [...list.children].forEach((li, i) => { li.hidden = !open && i >= TIMELINE_INITIAL; });
-        more.textContent = open ? "접기" : `전체 기록 보기 (${items.length})`;
-        more.setAttribute("aria-expanded", String(open));
-      };
-      more.hidden = false;
-      more.setAttribute("aria-controls", "timeline");
-      more.onclick = () => {
-        open = !open;
-        sync();
-        if (!open) document.getElementById("history").scrollIntoView({ block: "start" });
-      };
+    if (items.length <= TIMELINE_INITIAL) { more.hidden = true; return; }
+    const sync = () => {
+      [...list.children].forEach((li, i) => { li.hidden = !timelineOpen && i >= TIMELINE_INITIAL; });
+      more.textContent = timelineOpen ? t("timeline.less") : t("timeline.more", { n: items.length });
+      more.setAttribute("aria-expanded", String(timelineOpen));
+    };
+    more.hidden = false;
+    more.setAttribute("aria-controls", "timeline");
+    more.onclick = () => {
+      timelineOpen = !timelineOpen;
       sync();
-    }
+      if (!timelineOpen) document.getElementById("history").scrollIntoView({ block: "start" });
+    };
+    sync();
   }
 
   // ---------- tiles ----------
   function renderTiles(totals) {
-    const set = (k, v) => { const n = document.querySelector(`.tile-value[data-k="${k}"]`); if (n) n.replaceChildren(...v); };
-    set("works", [String(totals.works), el("small", { text: "개" })]);
-    set("versions", [String(totals.versions), el("small", { text: "개" })]);
-    set("commits30", [String(totals.commits30), el("small", { text: "회" })]);
-    set("lastPush", [totals.lastPush ? relative(totals.lastPush) : "–"]);
+    const set = (k, value, unitKey) => {
+      const n = document.querySelector(`.tile-value[data-k="${k}"]`);
+      if (!n) return;
+      const unit = unitKey ? t(unitKey) : "";
+      n.replaceChildren(String(value), ...(unit ? [el("small", { text: unit })] : []));
+    };
+    set("works", totals.works, "unit.count");
+    set("versions", totals.versions, "unit.count");
+    set("commits30", totals.commits30, "unit.times");
+    set("lastPush", totals.lastPush ? relative(totals.lastPush) : "–");
   }
 
   // ---------- chart: weekly commits, one series ----------
+  function commitsLabel(n) {
+    return n === 1 && t("chart.tip1") !== "chart.tip1" ? t("chart.tip1") : t("chart.tip", { n });
+  }
+
   function renderChart(weekly) {
     const host = document.getElementById("chart");
     const tip = document.getElementById("chart-tip");
@@ -95,12 +132,13 @@
     const NS = "http://www.w3.org/2000/svg";
     const s = (tag, attrs) => { const n = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
 
-    const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `최근 12주 주간 커밋 수, 최대 ${max}회` });
+    tip.hidden = true;
+    const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": t("chart.aria", { n: max }) });
     for (let v = 0; v <= top; v += step) {
       svg.append(s("line", { class: "grid", x1: padL, x2: W - padR, y1: y(v), y2: y(v) }));
-      const t = s("text", { class: "axis-label", x: padL - 8, y: y(v) + 4, "text-anchor": "end" });
-      t.textContent = v;
-      svg.append(t);
+      const label = s("text", { class: "axis-label", x: padL - 8, y: y(v) + 4, "text-anchor": "end" });
+      label.textContent = v;
+      svg.append(label);
     }
 
     weekly.forEach((w, i) => {
@@ -114,17 +152,19 @@
       }
       g.append(s("rect", { class: "hit", x: padL + band * i, y: padT, width: band, height: plotH }));
       if (band >= 44 || i % 2 === (weekly.length - 1) % 2) {
-        const t = s("text", { class: "axis-label", x: cx, y: H - 6, "text-anchor": "middle" });
-        t.textContent = short(w.weekStart);
-        svg.append(t);
+        const label = s("text", { class: "axis-label", x: cx, y: H - 6, "text-anchor": "middle" });
+        label.textContent = shortDate(w.weekStart);
+        svg.append(label);
       }
 
-      const end = new Date(new Date(w.weekStart).getTime() + 6 * 864e5);
+      const end = new Date(new Date(w.weekStart).getTime() + 6 * 864e5).toISOString();
       const breakdown = Object.entries(w.byRepo).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${v}`).join(" · ");
       const show = () => {
         svg.querySelectorAll(".col.is-active").forEach((n) => n.classList.remove("is-active"));
         g.classList.add("is-active");
-        tip.replaceChildren(el("strong", { text: `${short(w.weekStart)} – ${short(end)} · 커밋 ${w.total}회` }), breakdown ? el("span", { text: breakdown }) : el("span", { text: "커밋 없음" }));
+        tip.replaceChildren(
+          el("strong", { text: `${shortDate(w.weekStart)} – ${shortDate(end)} · ${commitsLabel(w.total)}` }),
+          el("span", { text: breakdown || t("chart.none") }));
         tip.hidden = false;
         const svgBox = svg.getBoundingClientRect(), cardBox = card.getBoundingClientRect();
         const scale = svgBox.width / W;
@@ -148,39 +188,54 @@
     host.replaceChildren(svg);
 
     const tbody = document.querySelector("#chart-table tbody");
-    tbody.replaceChildren(...weekly.map((w) => el("tr", {}, el("td", { text: dot(w.weekStart) }), el("td", { text: String(w.total) }))));
+    tbody.replaceChildren(...weekly.map((w) => el("tr", {}, el("td", { text: fullDate(w.weekStart) }), el("td", { text: String(w.total) }))));
   }
 
   // ---------- repo table ----------
   function renderRepos(repos) {
     const tbody = document.querySelector("#repo-table tbody");
     tbody.replaceChildren(...repos.map((r) => {
-      const name = el("td", {}, el("a", { href: r.url, text: r.site ? "studio-rayeonjin" : r.name }), r.site ? el("span", { class: "pill", text: "이 사이트" }) : null);
+      const name = el("td", {}, el("a", { href: r.url, text: r.name }), r.site ? el("span", { class: "pill", text: t("repo.thisSite") }) : null);
       const ver = r.latest
-        ? el("td", {}, el("a", { href: r.latest.url, text: r.latest.tag }), r.latest.prerelease ? el("span", { class: "pill", text: "베타" }) : null)
+        ? el("td", {}, el("a", { href: r.latest.url, text: r.latest.tag }), r.latest.prerelease ? el("span", { class: "pill", text: t("repo.beta") }) : null)
         : el("td", { class: "muted", text: "–" });
       return el("tr", {},
         name,
         ver,
-        el("td", { text: `${dot(r.pushedAt)} (${relative(r.pushedAt)})` }),
+        el("td", { text: `${fullDate(r.pushedAt)} (${relative(r.pushedAt)})` }),
         el("td", { text: r.language || "–" }),
         el("td", { class: "num-col", text: String(r.stars) }));
     }));
   }
 
-  function fail() {
-    const msg = "GitHub 기록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.";
-    document.getElementById("timeline").replaceChildren(el("li", { class: "timeline-empty", text: msg }));
-    document.querySelector("#repo-table tbody").replaceChildren(el("tr", {}, el("td", { colspan: "5", class: "muted", text: msg })));
-    document.getElementById("chart").replaceChildren(el("p", { class: "muted", text: msg }));
+  // ---------- state ----------
+  let data = null;
+  let failed = false;
+
+  function renderAll() {
+    if (failed) {
+      const msg = t("error.load");
+      document.getElementById("timeline").replaceChildren(el("li", { class: "timeline-empty", text: msg }));
+      document.querySelector("#repo-table tbody").replaceChildren(el("tr", {}, el("td", { colspan: "5", class: "muted", text: msg })));
+      document.getElementById("chart").replaceChildren(el("p", { class: "muted", text: msg }));
+      return;
+    }
+    if (!data) return;
+    renderTimeline(data.timeline || []);
+    renderTiles(data.totals);
+    renderChart(data.weekly || []);
+    renderRepos(data.repos || []);
+    const u = document.getElementById("dash-updated");
+    if (u && data.generatedAt) u.textContent = t("dash.updated", { t: relative(data.generatedAt) });
   }
+
+  document.addEventListener("langchange", renderAll);
 
   fetch("data/stats.json", { cache: "no-cache" })
     .then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status))))
     .then((d) => {
-      renderTimeline(d.timeline || []);
-      renderTiles(d.totals);
-      renderChart(d.weekly || []);
+      data = d;
+      renderAll();
       // Redraw at the new width so bars keep their pixel size.
       let raf = 0, lastW = 0;
       new ResizeObserver((entries) => {
@@ -188,11 +243,8 @@
         if (w === lastW) return;
         lastW = w;
         cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => renderChart(d.weekly || []));
+        raf = requestAnimationFrame(() => renderChart(data.weekly || []));
       }).observe(document.getElementById("chart"));
-      renderRepos(d.repos || []);
-      const u = document.getElementById("dash-updated");
-      if (u && d.generatedAt) u.textContent = `데이터 갱신 ${relative(d.generatedAt)}.`;
     })
-    .catch(fail);
+    .catch(() => { failed = true; renderAll(); });
 })();

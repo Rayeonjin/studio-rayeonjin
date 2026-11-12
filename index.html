@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Studio RAYEONJIN</title>
-  <meta name="description" content="Studio RAYEONJIN은 일상 가까이에서 오래 곁에 둘 수 있는 작고 다정한 소프트웨어를 만드는 스튜디오입니다. 소스를 공개하고, 사용자의 기기 안에서 조용히 돌아가는 도구를 만듭니다.">
+  <meta name="description" data-i18n-attr="content:meta.description" content="Studio RAYEONJIN은 일상 가까이에서 오래 곁에 둘 수 있는 작고 다정한 소프트웨어를 만드는 스튜디오입니다. 소스를 공개하고, 사용자의 기기 안에서 조용히 돌아가는 도구를 만듭니다.">
   <meta property="og:title" content="Studio RAYEONJIN">
   <meta property="og:description" content="작고 다정한 소프트웨어를 만드는 스튜디오. Small, kind software.">
   <meta property="og:type" content="website">
@@ -15,11 +15,33 @@
   <meta property="og:image:alt" content="Studio RAYEONJIN, 작고 다정한 소프트웨어를 만듭니다.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://studio-rayeonjin.vercel.app/">
+  <link rel="alternate" hreflang="ko" href="https://studio-rayeonjin.vercel.app/?lang=ko">
+  <link rel="alternate" hreflang="en" href="https://studio-rayeonjin.vercel.app/?lang=en">
+  <link rel="alternate" hreflang="zh-Hans" href="https://studio-rayeonjin.vercel.app/?lang=zh">
+  <link rel="alternate" hreflang="es" href="https://studio-rayeonjin.vercel.app/?lang=es">
+  <link rel="alternate" hreflang="x-default" href="https://studio-rayeonjin.vercel.app/">
+  <link rel="alternate" type="application/rss+xml" title="Studio RAYEONJIN" href="/feed.xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="theme-color" content="#f5efe4">
   <script>
-    // Light by default; apply a saved dark choice before first paint.
-    try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}
+    // Before first paint: saved theme, and the page language (URL > saved > browser > English).
+    (function () {
+      var root = document.documentElement, langs = ["ko", "en", "zh", "es"], lang = null;
+      try { if (localStorage.getItem("theme") === "dark") root.dataset.theme = "dark"; } catch (e) {}
+      try { var q = new URLSearchParams(location.search).get("lang"); if (langs.indexOf(q) >= 0) lang = q; } catch (e) {}
+      if (!lang) { try { var s = localStorage.getItem("lang"); if (langs.indexOf(s) >= 0) lang = s; } catch (e) {} }
+      if (!lang) {
+        var prefs = navigator.languages || [navigator.language || ""];
+        for (var i = 0; i < prefs.length && !lang; i++) { var p = String(prefs[i]).toLowerCase().slice(0, 2); if (langs.indexOf(p) >= 0) lang = p; }
+      }
+      lang = lang || "en";
+      window.__lang = lang;
+      if (lang !== "ko") {
+        root.lang = lang === "zh" ? "zh-Hans" : lang;
+        root.classList.add("i18n-pending");
+        setTimeout(function () { root.classList.remove("i18n-pending"); }, 2500);
+      }
+    })();
   </script>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -28,18 +50,27 @@
 
   <header class="menubar">
     <div class="menubar-inner">
-      <a class="brand" href="#top" aria-label="Studio RAYEONJIN 처음으로">
+      <a class="brand" href="#top" data-i18n-attr="aria-label:a11y.home" aria-label="Studio RAYEONJIN 처음으로">
         <img src="assets/mark.svg" alt="" width="18" height="18">
         <span>Studio RAYEONJIN</span>
       </a>
-      <nav class="menu" aria-label="주요 메뉴">
-        <a href="#about">소개</a>
-        <a href="#works">작업</a>
-        <a href="#dashboard">현황</a>
-        <a href="#history">연혁</a>
-        <a class="nav-wide" href="#support">응원하기</a>
-        <a class="nav-wide" href="#faq">FAQ</a>
+      <nav class="menu" data-i18n-attr="aria-label:a11y.mainMenu" aria-label="주요 메뉴">
+        <a href="#about" data-i18n="nav.about">소개</a>
+        <a href="#works" data-i18n="nav.works">작업</a>
+        <a href="#dashboard" data-i18n="nav.dashboard">현황</a>
+        <a href="#history" data-i18n="nav.history">연혁</a>
+        <a href="#support" data-i18n="nav.support">응원하기</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
       </nav>
+      <label class="lang-picker">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></svg>
+        <select id="lang-select" data-i18n-attr="aria-label:a11y.language" aria-label="언어">
+          <option value="ko" lang="ko">한국어</option>
+          <option value="en" lang="en">English</option>
+          <option value="zh" lang="zh-Hans">简体中文</option>
+          <option value="es" lang="es">Español</option>
+        </select>
+      </label>
       <button type="button" class="theme-toggle" id="theme-toggle" aria-label="다크 모드로 바꾸기" aria-pressed="false">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -51,41 +82,41 @@
   <main id="top">
 
     <section class="hero wrap">
-      <p class="eyebrow">Software studio · Korea</p>
-      <h1>작고 다정한<br>소프트웨어를 만듭니다.</h1>
-      <p class="hero-en">Small, kind software.</p>
-      <p class="lede">Studio RAYEONJIN은 소프트웨어 스튜디오입니다.<br class="w"> 일상 가까이에 두고 <span class="nw">오래 쓸 수 있는</span> 도구를 만듭니다.<br class="w"> 지금은 macOS 앱이 중심이고, 다른 플랫폼의 작업도 <span class="nw">준비되는 대로</span> 올립니다.</p>
+      <p class="eyebrow" data-i18n="hero.eyebrow">Software studio · Korea</p>
+      <h1 data-i18n="hero.title">작고 다정한<br>소프트웨어를 만듭니다.</h1>
+      <p class="hero-en" data-i18n="hero.tagline">Small, kind software.</p>
+      <p class="lede" data-i18n="hero.lede">Studio RAYEONJIN은 소프트웨어 스튜디오입니다.<br class="w"> 일상 가까이에 두고 <span class="nw">오래 쓸 수 있는</span> 도구를 만듭니다.<br class="w"> 지금은 macOS 앱이 중심이고, 다른 플랫폼의 작업도 <span class="nw">준비되는 대로</span> 올립니다.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="#works">작업 둘러보기</a>
-        <a class="btn" href="#about">스튜디오 소개</a>
+        <a class="btn btn-primary" href="#works" data-i18n="hero.ctaWorks">작업 둘러보기</a>
+        <a class="btn" href="#about" data-i18n="hero.ctaAbout">스튜디오 소개</a>
       </div>
     </section>
 
     <section id="about" class="wrap section section-tight">
       <header class="section-head">
         <p class="eyebrow">About</p>
-        <h2>Studio RAYEONJIN이 일하는 방식</h2>
+        <h2 data-i18n="about.title">Studio RAYEONJIN이 일하는 방식</h2>
       </header>
       <div class="about-lede">
-        <p>Studio RAYEONJIN의 앱은 <span class="nw">개인적인 필요에서</span> 시작합니다.<br class="w"> 직접 쓰려고 만든 도구를, 같은 필요가 있는 분도 <span class="nw">쓸 수 있게</span> 공개합니다.</p>
-        <p>필요에 맞으면 편하게 써 주세요.<br class="w"> 의견이 있다면 <a href="https://t.me/Rayeonjin">Telegram</a>으로 남겨주세요. 반갑게 읽겠습니다.</p>
-        <p>만드는 것의 종류는 달라도, 모든 작업은 아래 <span class="nw">세 가지</span> 원칙을 지킵니다.</p>
+        <p data-i18n="about.p1">Studio RAYEONJIN의 앱은 <span class="nw">개인적인 필요에서</span> 시작합니다.<br class="w"> 직접 쓰려고 만든 도구를, 같은 필요가 있는 분도 <span class="nw">쓸 수 있게</span> 공개합니다.</p>
+        <p data-i18n="about.p2">필요에 맞으면 편하게 써 주세요.<br class="w"> 의견이 있다면 <a href="https://t.me/Rayeonjin">Telegram</a>으로 남겨주세요. 반갑게 읽겠습니다.</p>
+        <p data-i18n="about.p3">만드는 것의 종류는 달라도, 모든 작업은 아래 <span class="nw">세 가지</span> 원칙을 지킵니다.</p>
       </div>
       <div class="principles">
         <article>
           <span class="num">01</span>
-          <h3>내 기기 안에서</h3>
-          <p>계정, 클라우드 저장, 분석 도구를 넣지 않습니다.<br class="w"> 기록과 설정은 사용자의 기기에만 남습니다.</p>
+          <h3 data-i18n="principle1.title">내 기기 안에서</h3>
+          <p data-i18n="principle1.body">계정, 클라우드 저장, 분석 도구를 넣지 않습니다.<br class="w"> 기록과 설정은 사용자의 기기에만 남습니다.</p>
         </article>
         <article>
           <span class="num">02</span>
-          <h3>소스는 그대로 공개</h3>
-          <p>무엇이 실행되는지 누구나 <span class="nw">볼 수 있게</span> 소스를 공개합니다.<br class="w"> 사용 범위는 작업마다 라이선스로 밝힙니다.</p>
+          <h3 data-i18n="principle2.title">소스는 그대로 공개</h3>
+          <p data-i18n="principle2.body">무엇이 실행되는지 누구나 <span class="nw">볼 수 있게</span> 소스를 공개합니다.<br class="w"> 사용 범위는 작업마다 라이선스로 밝힙니다.</p>
         </article>
         <article>
           <span class="num">03</span>
-          <h3>꼼꼼한 기록</h3>
-          <p>변경 이력, 알려진 문제, 데이터 출처를 문서로 남깁니다.<br class="w"> 확인하지 못한 것은 그렇다고 적습니다.</p>
+          <h3 data-i18n="principle3.title">꼼꼼한 기록</h3>
+          <p data-i18n="principle3.body">변경 이력, 알려진 문제, 데이터 출처를 문서로 남깁니다.<br class="w"> 확인하지 못한 것은 그렇다고 적습니다.</p>
         </article>
       </div>
     </section>
@@ -93,38 +124,38 @@
     <section id="works" class="wrap section">
       <header class="section-head">
         <p class="eyebrow">Works</p>
-        <h2>작업</h2>
+        <h2 data-i18n="works.title">작업</h2>
       </header>
 
       <h3 class="platform">macOS</h3>
-      <p class="platform-note">macOS 앱은 완성된 설치 파일 대신 소스로 배포합니다.<br class="w"> 무료 Apple 개발 도구로 각자 Mac에서 빌드하며, 방법은 앱마다 설치 가이드에 있습니다.</p>
+      <p class="platform-note" data-i18n="works.macNote">macOS 앱은 완성된 설치 파일 대신 소스로 배포합니다.<br class="w"> 무료 Apple 개발 도구로 각자 Mac에서 빌드하며, 방법은 앱마다 설치 가이드에 있습니다.</p>
 
       <article class="app app-feature">
         <div class="app-media">
           <div class="shot-bar">
-            <img src="assets/catoshi-menubar.png" alt="macOS 메뉴바에 앉은 Catoshi 고양이와 BTC 시세, 김치프리미엄 표시" loading="lazy" width="1100" height="30">
+            <img src="assets/catoshi-menubar.png" data-i18n-attr="alt:catoshi.altBar" alt="macOS 메뉴바에 앉은 Catoshi 고양이와 BTC 시세, 김치프리미엄 표시" loading="lazy" width="1100" height="30">
           </div>
-          <img class="shot-panel" src="assets/catoshi-panel-card.jpg" alt="메뉴바를 누르면 열리는 Catoshi 시세 패널: Binance, Upbit 시세와 김치프리미엄" loading="lazy" width="1040" height="700">
-          <p class="shot-note">가상 시세로 재현한 화면입니다.</p>
+          <img class="shot-panel" src="assets/catoshi-panel-card.jpg" data-i18n-attr="alt:catoshi.altPanel" alt="메뉴바를 누르면 열리는 Catoshi 시세 패널: Binance, Upbit 시세와 김치프리미엄" loading="lazy" width="1040" height="700">
+          <p class="shot-note" data-i18n="catoshi.shotNote">가상 시세로 재현한 화면입니다.</p>
         </div>
         <div class="app-body">
           <div class="app-title">
             <img class="app-icon" src="assets/catoshi-icon.png" alt="" width="64" height="64">
             <div>
               <h4>Catoshi <span class="tag">Beta</span></h4>
-              <p class="app-en">A little cat that lives in your menu bar.</p>
+              <p class="app-en" data-i18n="catoshi.tagline">A little cat that lives in your menu bar.</p>
             </div>
           </div>
-          <p>메뉴바를 산책하고, 방향을 돌리고, <span class="nw">식빵을 굽는</span> 작은 고양이.<br class="w"> 그 곁에서 BTC 시세와 김치프리미엄,<br class="w"> 시장 흐름을 함께 확인합니다.<br class="w"> 거래소 계정이나 <span class="nw">API Key는</span> <span class="nw">필요 없습니다.</span></p>
+          <p data-i18n="catoshi.desc">메뉴바를 산책하고, 방향을 돌리고, <span class="nw">식빵을 굽는</span> 작은 고양이.<br class="w"> 그 곁에서 BTC 시세와 김치프리미엄,<br class="w"> 시장 흐름을 함께 확인합니다.<br class="w"> 거래소 계정이나 <span class="nw">API Key는</span> <span class="nw">필요 없습니다.</span></p>
           <ul class="meta">
             <li>macOS 13+</li>
             <li>Apple Silicon · Intel</li>
-            <li>비상업적 개인 사용 <span class="nw">(Catoshi Community License)</span></li>
+            <li data-i18n="catoshi.license">비상업적 개인 사용 <span class="nw">(Catoshi Community License)</span></li>
           </ul>
           <div class="links">
             <a href="https://github.com/Rayeonjin/Catoshi">GitHub</a>
             <a href="https://github.com/Rayeonjin/Catoshi/releases">Releases</a>
-            <a href="https://github.com/Rayeonjin/Catoshi/blob/main/docs/BUILDING.md">설치 가이드</a>
+            <a href="https://github.com/Rayeonjin/Catoshi/blob/main/docs/BUILDING.md" data-i18n="common.installGuide">설치 가이드</a>
           </div>
         </div>
       </article>
@@ -134,62 +165,61 @@
           <div class="app-title">
             <img class="app-icon" src="assets/memoweaver-icon.png" alt="" width="64" height="64">
             <div>
-              <h4>MemoWeaver <span class="tag tag-quiet">개발 중</span></h4>
-              <p class="app-en">Local-first notes for macOS.</p>
+              <h4>MemoWeaver <span class="tag tag-quiet" data-i18n="memo.status">개발 중</span></h4>
+              <p class="app-en" data-i18n="memo.tagline">Local-first notes for macOS.</p>
             </div>
           </div>
-          <p>빠르게 적고, 나중에 다시 이어 붙이는 노트.<br class="w"> Markdown은 필요할 때만 쓰고,<br class="w"> 원하면 <span class="nw">로컬 AI가</span> <span class="nw">생각 사이의 연결을</span> 찾아줍니다.<br class="w"> 원본 텍스트를 지키는 것을 <span class="nw">가장 먼저 생각합니다.</span></p>
+          <p data-i18n="memo.desc">빠르게 적고, 나중에 다시 이어 붙이는 노트.<br class="w"> Markdown은 필요할 때만 쓰고,<br class="w"> 원하면 <span class="nw">로컬 AI가</span> <span class="nw">생각 사이의 연결을</span> 찾아줍니다.<br class="w"> 원본 텍스트를 지키는 것을 <span class="nw">가장 먼저 생각합니다.</span></p>
           <ul class="meta">
             <li>macOS 14+</li>
             <li>Apache-2.0</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Rayeonjin/MemoWeaver">GitHub</a>
-            <a href="https://github.com/Rayeonjin/MemoWeaver#build-from-source-macos-14">설치 가이드</a>
+            <a href="https://github.com/Rayeonjin/MemoWeaver#build-from-source-macos-14" data-i18n="common.installGuide">설치 가이드</a>
           </div>
         </article>
 
         <article class="app app-next">
-          <h4>다음 작업 준비 중</h4>
-          <p>새로운 앱과 다른 플랫폼의 작업도 <span class="nw">준비되는 대로</span> 이곳에 올립니다.<br class="w"> 소식은 GitHub과 Telegram에서 <span class="nw">먼저 전합니다.</span></p>
+          <h4 data-i18n="next.title">다음 작업 준비 중</h4>
+          <p data-i18n="next.body">새로운 앱과 다른 플랫폼의 작업도 <span class="nw">준비되는 대로</span> 이곳에 올립니다.<br class="w"> 소식은 GitHub과 Telegram에서 <span class="nw">먼저 전합니다.</span></p>
           <div class="links">
-            <a href="https://t.me/Rayeonjin">Telegram 소식 받기</a>
+            <a href="https://t.me/Rayeonjin" data-i18n="next.link">Telegram 소식 받기</a>
           </div>
         </article>
       </div>
     </section>
 
-
     <section id="dashboard" class="wrap section">
       <header class="section-head">
         <p class="eyebrow">Dashboard</p>
-        <h2>개발 현황</h2>
+        <h2 data-i18n="dash.title">개발 현황</h2>
       </header>
-      <p class="section-lede">GitHub 공개 저장소 기준이며, 3시간마다 새로 집계합니다. <span class="updated" id="dash-updated"></span></p>
+      <p class="section-lede"><span data-i18n="dash.lede">GitHub 공개 저장소 기준이며, 3시간마다 새로 집계합니다.</span> <span class="updated" id="dash-updated"></span></p>
 
       <div class="tiles" id="tiles">
-        <div class="tile"><span class="tile-label">공개 작업</span><span class="tile-value" data-k="works">–</span></div>
-        <div class="tile"><span class="tile-label">공개 버전</span><span class="tile-value" data-k="versions">–</span></div>
-        <div class="tile"><span class="tile-label">최근 30일 커밋</span><span class="tile-value" data-k="commits30">–</span></div>
-        <div class="tile"><span class="tile-label">마지막 업데이트</span><span class="tile-value" data-k="lastPush">–</span></div>
+        <div class="tile"><span class="tile-label" data-i18n="dash.tileWorks">공개 작업</span><span class="tile-value" data-k="works">–</span></div>
+        <div class="tile"><span class="tile-label" data-i18n="dash.tileVersions">공개 버전</span><span class="tile-value" data-k="versions">–</span></div>
+        <div class="tile"><span class="tile-label" data-i18n="dash.tileCommits">최근 30일 커밋</span><span class="tile-value" data-k="commits30">–</span></div>
+        <div class="tile"><span class="tile-label" data-i18n="dash.tileLast">마지막 업데이트</span><span class="tile-value" data-k="lastPush">–</span></div>
       </div>
 
       <figure class="chart-card">
         <figcaption>
-          <span class="chart-title">주간 커밋</span>
-          <span class="chart-sub">최근 12주 · 모든 공개 저장소</span>
+          <span class="chart-title" data-i18n="dash.chartTitle">주간 커밋</span>
+          <span class="chart-sub" data-i18n="dash.chartSub">최근 12주 · 모든 공개 저장소</span>
         </figcaption>
         <div class="chart" id="chart"></div>
         <div class="chart-tip" id="chart-tip" role="status" hidden></div>
-        <table class="sr-only" id="chart-table"><caption>주간 커밋 수</caption><thead><tr><th scope="col">주</th><th scope="col">커밋</th></tr></thead><tbody></tbody></table>
+        <table class="sr-only" id="chart-table"><caption data-i18n="dash.chartCaption">주간 커밋 수</caption><thead><tr><th scope="col" data-i18n="dash.thWeek">주</th><th scope="col" data-i18n="dash.thCommits">커밋</th></tr></thead><tbody></tbody></table>
       </figure>
 
       <div class="repo-table-wrap">
         <table class="repo-table" id="repo-table">
           <thead>
-            <tr><th scope="col">저장소</th><th scope="col">최신 버전</th><th scope="col">마지막 업데이트</th><th scope="col">언어</th><th scope="col" class="num-col">★</th></tr>
+            <tr><th scope="col" data-i18n="dash.thRepo">저장소</th><th scope="col" data-i18n="dash.thVersion">최신 버전</th><th scope="col" data-i18n="dash.thUpdated">마지막 업데이트</th><th scope="col" data-i18n="dash.thLang">언어</th><th scope="col" class="num-col">★</th></tr>
           </thead>
-          <tbody><tr><td colspan="5" class="muted">불러오는 중입니다.</td></tr></tbody>
+          <tbody><tr><td colspan="5" class="muted" data-i18n="common.loading">불러오는 중입니다.</td></tr></tbody>
         </table>
       </div>
     </section>
@@ -197,53 +227,59 @@
     <section id="history" class="wrap section">
       <header class="section-head">
         <p class="eyebrow">History</p>
-        <h2>연혁</h2>
+        <h2 data-i18n="history.title">연혁</h2>
       </header>
-      <p class="section-lede">공개한 작업과 릴리스를 GitHub 기록에서 그대로 가져와 보여줍니다.</p>
+      <p class="section-lede" data-i18n="history.lede">공개한 작업과 릴리스를 GitHub 기록에서 그대로 가져와 보여줍니다.</p>
       <ol class="timeline" id="timeline" aria-live="polite">
-        <li class="timeline-empty">기록을 불러오는 중입니다.</li>
+        <li class="timeline-empty" data-i18n="common.loading">불러오는 중입니다.</li>
       </ol>
-      <button type="button" class="btn btn-small" id="timeline-more" hidden>전체 기록 보기</button>
+      <div class="history-actions">
+        <button type="button" class="btn btn-small" id="timeline-more" hidden>전체 기록 보기</button>
+        <a class="rss-link" href="/feed.xml">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14"/><circle cx="6" cy="18" r="1.5" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="history.rss">RSS로 구독하기</span>
+        </a>
+      </div>
     </section>
 
     <section id="support" class="wrap section">
       <header class="section-head">
         <p class="eyebrow">Support</p>
-        <h2>개발 응원하기</h2>
+        <h2 data-i18n="support.title">개발 응원하기</h2>
       </header>
       <div class="support">
-        <p class="support-lede">작업이 마음에 드셨다면 자발적인 응원을 <span class="nw">보내주실 수 있어요.</span><br class="w"> 다음 작업을 만드는 데 <span class="nw">큰 힘이 됩니다.</span></p>
+        <p class="support-lede" data-i18n="support.lede">작업이 마음에 드셨다면 자발적인 응원을 <span class="nw">보내주실 수 있어요.</span><br class="w"> 다음 작업을 만드는 데 <span class="nw">큰 힘이 됩니다.</span></p>
         <div class="support-links">
           <a class="support-card" href="https://fairy.hada.io/@catoshi">
             <span class="support-name">Fairy</span>
-            <span class="support-desc">Fairy로 응원하기</span>
+            <span class="support-desc" data-i18n="support.fairy">Fairy로 응원하기</span>
           </a>
           <a class="support-card" href="https://buymeacoffee.com/rayeonjin">
             <span class="support-name">Buy Me a Coffee</span>
-            <span class="support-desc">커피 한 잔 보내기</span>
+            <span class="support-desc" data-i18n="support.bmc">커피 한 잔 보내기</span>
           </a>
           <a class="support-card" href="https://ko-fi.com/rayeonjin">
             <span class="support-name">Ko-fi</span>
-            <span class="support-desc">Ko-fi로 응원하기</span>
+            <span class="support-desc" data-i18n="support.kofi">Ko-fi로 응원하기</span>
           </a>
         </div>
-        <p class="note">후원은 사용권이나 기능 제공의 대가가 아니며, <span class="nw">기능·업데이트·지원</span> 우선순위에 차이가 없습니다.</p>
+        <p class="note" data-i18n="support.note">후원은 사용권이나 기능 제공의 대가가 아니며, <span class="nw">기능·업데이트·지원</span> 우선순위에 차이가 없습니다.</p>
       </div>
     </section>
 
     <section id="faq" class="wrap section">
       <header class="section-head">
         <p class="eyebrow">FAQ</p>
-        <h2>자주 묻는 질문</h2>
+        <h2 data-i18n="faq.title">자주 묻는 질문</h2>
       </header>
       <div class="faq">
         <details>
-          <summary>정말 무료인가요?</summary>
-          <p>네. 받고 빌드해서 쓰는 데 비용이 <span class="nw">들지 않습니다.</span><br class="w"> 다만 라이선스는 작업마다 달라요.<br class="w"> Catoshi는 비상업적 개인 사용만 허용하고, MemoWeaver는 Apache-2.0입니다.<br class="w"> 자세한 내용은 각 저장소의 LICENSE를 <span class="nw">확인해 주세요.</span></p>
+          <summary data-i18n="faq.q1">정말 무료인가요?</summary>
+          <p data-i18n="faq.a1">네. 받고 빌드해서 쓰는 데 비용이 <span class="nw">들지 않습니다.</span><br class="w"> 다만 라이선스는 작업마다 달라요.<br class="w"> Catoshi는 비상업적 개인 사용만 허용하고, MemoWeaver는 Apache-2.0입니다.<br class="w"> 자세한 내용은 각 저장소의 LICENSE를 <span class="nw">확인해 주세요.</span></p>
         </details>
         <details>
-          <summary>의견이나 문제는 어디로 알려주나요?</summary>
-          <p>해당 작업의 GitHub 저장소나 <a href="https://t.me/Rayeonjin">Telegram</a>으로 알려주세요. <br class="w"> 사용 중인 버전과 환경, 증상과 오류 메시지를 함께 적어주시면 큰 <span class="nw">도움이 됩니다.</span><br class="w"> 응답 시간은 보장하지 못하는 점 <span class="nw">양해 부탁드려요.</span></p>
+          <summary data-i18n="faq.q2">의견이나 문제는 어디로 알려주나요?</summary>
+          <p data-i18n="faq.a2">해당 작업의 GitHub 저장소나 <a href="https://t.me/Rayeonjin">Telegram</a>으로 알려주세요.<br class="w"> 사용 중인 버전과 환경, 증상과 오류 메시지를 함께 적어주시면 큰 <span class="nw">도움이 됩니다.</span><br class="w"> 응답 시간은 보장하지 못하는 점 <span class="nw">양해 부탁드려요.</span></p>
         </details>
       </div>
     </section>
@@ -256,25 +292,27 @@
         <img src="assets/mark.svg" alt="" width="20" height="20">
         <span>Studio RAYEONJIN</span>
       </div>
-      <nav class="footer-links" aria-label="외부 링크">
+      <nav class="footer-links" data-i18n-attr="aria-label:a11y.externalLinks" aria-label="외부 링크">
         <a href="https://github.com/Rayeonjin">GitHub</a>
         <a href="https://t.me/Rayeonjin">Telegram</a>
+        <a href="/feed.xml">RSS</a>
       </nav>
-      <p class="fine">© 2026 Rayeonjin · 이 사이트는 쿠키와 분석 도구를 사용하지 않습니다.</p>
+      <p class="fine" data-i18n="footer.fine">© 2026 Rayeonjin · 이 사이트는 쿠키와 분석 도구를 사용하지 않습니다.</p>
     </div>
   </footer>
 
+  <script src="i18n.js" defer></script>
   <script src="dashboard.js" defer></script>
-
   <script>
     (() => {
       const root = document.documentElement;
       const btn = document.getElementById("theme-toggle");
       const meta = document.querySelector('meta[name="theme-color"]');
+      const t = (k, fallback) => (window.I18N ? window.I18N.t(k) : fallback);
       const sync = () => {
         const dark = root.dataset.theme === "dark";
         btn.setAttribute("aria-pressed", String(dark));
-        btn.setAttribute("aria-label", dark ? "라이트 모드로 바꾸기" : "다크 모드로 바꾸기");
+        btn.setAttribute("aria-label", dark ? t("a11y.toLight", "라이트 모드로 바꾸기") : t("a11y.toDark", "다크 모드로 바꾸기"));
         meta.setAttribute("content", dark ? "#16130f" : "#f5efe4");
       };
       btn.addEventListener("click", () => {
@@ -283,6 +321,7 @@
         try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
         sync();
       });
+      document.addEventListener("langchange", sync);
       sync();
     })();
   </script>
