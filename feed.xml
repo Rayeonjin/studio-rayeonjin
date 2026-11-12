@@ -6,7 +6,15 @@
     <atom:link href="https://studio-rayeonjin.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Studio RAYEONJIN의 새 작업과 릴리스 소식 · Releases and launches from Studio RAYEONJIN</description>
     <language>ko</language>
-    <lastBuildDate>Thu, 12 Nov 2026 14:24:46 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 14:34:22 GMT</lastBuildDate>
+    <item>
+      <title>MemoWeaver v0.9.67-qa</title>
+      <link>https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.67-qa</link>
+      <guid isPermaLink="false">MemoWeaver:tag:v0.9.67-qa</guid>
+      <pubDate>Thu, 12 Nov 2026 14:34:22 GMT</pubDate>
+      <category>MemoWeaver</category>
+      <description>MemoWeaver · 버전 태그 · Version tag</description>
+    </item>
     <item>
       <title>Uncomew v0.2.0-alpha.1 — 첫 공개 테스트</title>
       <link>https://github.com/Rayeonjin/Uncomew/releases/tag/v0.2.0-alpha.1</link>

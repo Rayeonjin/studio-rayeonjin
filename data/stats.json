@@ -1,11 +1,11 @@
 {
   "org": "Rayeonjin",
-  "generatedAt": "2026-11-12T14:30:59.080Z",
+  "generatedAt": "2026-11-12T14:37:49.664Z",
   "totals": {
     "works": 3,
-    "versions": 15,
-    "commits30": 44,
-    "lastPush": "2026-11-12T14:30:50Z"
+    "versions": 16,
+    "commits30": 47,
+    "lastPush": "2026-11-12T14:37:42Z"
   },
   "weekly": [
     {
@@ -78,10 +78,11 @@
     },
     {
       "weekStart": "2026-11-08T15:00:00.000Z",
-      "total": 28,
+      "total": 31,
       "byRepo": {
         "Catoshi": 2,
-        "studio-rayeonjin": 20,
+        "MemoWeaver": 1,
+        "studio-rayeonjin": 22,
         "Uncomew": 6
       }
     }
@@ -114,16 +115,16 @@
       "language": "Swift",
       "license": "Apache-2.0",
       "createdAt": "2026-10-29T13:46:13Z",
-      "pushedAt": "2026-11-08T03:51:30Z",
+      "pushedAt": "2026-11-12T14:34:36Z",
       "stars": 0,
       "openIssues": 0,
       "latest": {
-        "tag": "v0.9.66-qa",
-        "date": "2026-11-08T03:51:25Z",
+        "tag": "v0.9.67-qa",
+        "date": "2026-11-12T14:34:22Z",
         "prerelease": true,
-        "url": "https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.66-qa"
+        "url": "https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.67-qa"
       },
-      "versionCount": 3
+      "versionCount": 4
     },
     {
       "name": "studio-rayeonjin",
@@ -133,7 +134,7 @@
       "language": "JavaScript",
       "license": null,
       "createdAt": "2026-11-11T03:58:20Z",
-      "pushedAt": "2026-11-12T14:30:50Z",
+      "pushedAt": "2026-11-12T14:37:42Z",
       "stars": 0,
       "openIssues": 0,
       "latest": null,
@@ -160,6 +161,14 @@
     }
   ],
   "timeline": [
+    {
+      "date": "2026-11-12T14:34:22Z",
+      "repo": "MemoWeaver",
+      "kind": "tag",
+      "title": "MemoWeaver v0.9.67-qa",
+      "tag": "v0.9.67-qa",
+      "url": "https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.67-qa"
+    },
     {
       "date": "2026-11-12T14:24:46Z",
       "repo": "Uncomew",
