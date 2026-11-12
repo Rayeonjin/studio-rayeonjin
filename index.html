@@ -35,8 +35,10 @@
       <nav class="menu" aria-label="주요 메뉴">
         <a href="#about">소개</a>
         <a href="#works">작업</a>
-        <a href="#support">응원<span class="long">하기</span></a>
-        <a class="nav-faq" href="#faq">FAQ</a>
+        <a href="#history">연혁</a>
+        <a href="#dashboard">현황</a>
+        <a class="nav-wide" href="#support">응원하기</a>
+        <a class="nav-wide" href="#faq">FAQ</a>
       </nav>
       <button type="button" class="theme-toggle" id="theme-toggle" aria-label="다크 모드로 바꾸기" aria-pressed="false">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
@@ -158,6 +160,52 @@
     </section>
 
 
+    <section id="history" class="wrap section">
+      <header class="section-head">
+        <p class="eyebrow">History</p>
+        <h2>연혁</h2>
+      </header>
+      <p class="section-lede">공개한 작업과 릴리스를 GitHub 기록에서 그대로 가져와 보여줍니다.</p>
+      <ol class="timeline" id="timeline" aria-live="polite">
+        <li class="timeline-empty">기록을 불러오는 중입니다.</li>
+      </ol>
+      <button type="button" class="btn btn-small" id="timeline-more" hidden>전체 기록 보기</button>
+    </section>
+
+    <section id="dashboard" class="wrap section">
+      <header class="section-head">
+        <p class="eyebrow">Dashboard</p>
+        <h2>개발 현황</h2>
+      </header>
+      <p class="section-lede">GitHub 공개 저장소 기준이며, 3시간마다 새로 집계합니다. <span class="updated" id="dash-updated"></span></p>
+
+      <div class="tiles" id="tiles">
+        <div class="tile"><span class="tile-label">공개 작업</span><span class="tile-value" data-k="works">–</span></div>
+        <div class="tile"><span class="tile-label">공개 버전</span><span class="tile-value" data-k="versions">–</span></div>
+        <div class="tile"><span class="tile-label">최근 30일 커밋</span><span class="tile-value" data-k="commits30">–</span></div>
+        <div class="tile"><span class="tile-label">마지막 업데이트</span><span class="tile-value" data-k="lastPush">–</span></div>
+      </div>
+
+      <figure class="chart-card">
+        <figcaption>
+          <span class="chart-title">주간 커밋</span>
+          <span class="chart-sub">최근 12주 · 모든 공개 저장소</span>
+        </figcaption>
+        <div class="chart" id="chart"></div>
+        <div class="chart-tip" id="chart-tip" role="status" hidden></div>
+        <table class="sr-only" id="chart-table"><caption>주간 커밋 수</caption><thead><tr><th scope="col">주</th><th scope="col">커밋</th></tr></thead><tbody></tbody></table>
+      </figure>
+
+      <div class="repo-table-wrap">
+        <table class="repo-table" id="repo-table">
+          <thead>
+            <tr><th scope="col">저장소</th><th scope="col">최신 버전</th><th scope="col">마지막 업데이트</th><th scope="col">언어</th><th scope="col" class="num-col">★</th></tr>
+          </thead>
+          <tbody><tr><td colspan="5" class="muted">불러오는 중입니다.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
     <section id="support" class="wrap section">
       <header class="section-head">
         <p class="eyebrow">Support</p>
@@ -215,6 +263,8 @@
       <p class="fine">© 2026 Rayeonjin · 이 사이트는 쿠키와 분석 도구를 사용하지 않습니다.</p>
     </div>
   </footer>
+
+  <script src="dashboard.js" defer></script>
 
   <script>
     (() => {
