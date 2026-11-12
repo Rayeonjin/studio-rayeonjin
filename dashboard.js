@@ -2,7 +2,7 @@
 // the Rayeonjin GitHub organization and is cached for an hour).
 (() => {
   const TZ = "Asia/Seoul";
-  const TIMELINE_INITIAL = 8;
+  const TIMELINE_INITIAL = 5;
 
   const fmtDate = new Intl.DateTimeFormat("ko-KR", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
   const fmtShort = new Intl.DateTimeFormat("ko-KR", { timeZone: TZ, month: "numeric", day: "numeric" });
@@ -53,12 +53,20 @@
       list.append(li);
     });
     if (items.length > TIMELINE_INITIAL) {
-      more.hidden = false;
-      more.textContent = `전체 기록 보기 (${items.length})`;
-      more.onclick = () => {
-        list.querySelectorAll("li[hidden]").forEach((li) => { li.hidden = false; });
-        more.hidden = true;
+      let open = false;
+      const sync = () => {
+        [...list.children].forEach((li, i) => { li.hidden = !open && i >= TIMELINE_INITIAL; });
+        more.textContent = open ? "접기" : `전체 기록 보기 (${items.length})`;
+        more.setAttribute("aria-expanded", String(open));
       };
+      more.hidden = false;
+      more.setAttribute("aria-controls", "timeline");
+      more.onclick = () => {
+        open = !open;
+        sync();
+        if (!open) document.getElementById("history").scrollIntoView({ block: "start" });
+      };
+      sync();
     }
   }
 
