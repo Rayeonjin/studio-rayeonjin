@@ -1,11 +1,11 @@
 {
   "org": "Rayeonjin",
-  "generatedAt": "2026-11-12T14:04:45.478Z",
+  "generatedAt": "2026-11-12T14:29:36.478Z",
   "totals": {
-    "works": 2,
-    "versions": 14,
-    "commits30": 36,
-    "lastPush": "2026-11-12T14:04:37Z"
+    "works": 3,
+    "versions": 15,
+    "commits30": 43,
+    "lastPush": "2026-11-12T14:28:07Z"
   },
   "weekly": [
     {
@@ -78,10 +78,11 @@
     },
     {
       "weekStart": "2026-11-08T15:00:00.000Z",
-      "total": 20,
+      "total": 27,
       "byRepo": {
         "Catoshi": 2,
-        "studio-rayeonjin": 18
+        "studio-rayeonjin": 19,
+        "Uncomew": 6
       }
     }
   ],
@@ -129,17 +130,45 @@
       "site": true,
       "description": "Studio RAYEONJIN — small, kind tools for macOS. 스튜디오 소개 페이지",
       "url": "https://github.com/Rayeonjin/studio-rayeonjin",
-      "language": "HTML",
+      "language": "JavaScript",
       "license": null,
       "createdAt": "2026-11-11T03:58:20Z",
-      "pushedAt": "2026-11-12T14:04:37Z",
+      "pushedAt": "2026-11-12T14:04:49Z",
       "stars": 0,
       "openIssues": 0,
       "latest": null,
       "versionCount": 0
+    },
+    {
+      "name": "Uncomew",
+      "site": false,
+      "description": "Mac에 숨어 있는 큰 파일을 찾고 정리할 항목을 검토하는 macOS 앱 · 초기 공개 테스트 · 직접 빌드 · MIT",
+      "url": "https://github.com/Rayeonjin/Uncomew",
+      "language": "Swift",
+      "license": "MIT",
+      "createdAt": "2026-11-12T14:12:32Z",
+      "pushedAt": "2026-11-12T14:28:07Z",
+      "stars": 0,
+      "openIssues": 0,
+      "latest": {
+        "tag": "v0.2.0-alpha.1",
+        "date": "2026-11-12T14:24:46Z",
+        "prerelease": true,
+        "url": "https://github.com/Rayeonjin/Uncomew/releases/tag/v0.2.0-alpha.1"
+      },
+      "versionCount": 1
     }
   ],
   "timeline": [
+    {
+      "date": "2026-11-12T14:24:46Z",
+      "repo": "Uncomew",
+      "kind": "release",
+      "title": "Uncomew v0.2.0-alpha.1 — 첫 공개 테스트",
+      "tag": "v0.2.0-alpha.1",
+      "prerelease": true,
+      "url": "https://github.com/Rayeonjin/Uncomew/releases/tag/v0.2.0-alpha.1"
+    },
     {
       "date": "2026-11-11T03:58:20Z",
       "repo": "studio-rayeonjin",

@@ -6,7 +6,15 @@
     <atom:link href="https://studio-rayeonjin.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Studio RAYEONJIN의 새 작업과 릴리스 소식 · Releases and launches from Studio RAYEONJIN</description>
     <language>ko</language>
-    <lastBuildDate>Wed, 11 Nov 2026 03:58:20 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 14:24:46 GMT</lastBuildDate>
+    <item>
+      <title>Uncomew v0.2.0-alpha.1 — 첫 공개 테스트</title>
+      <link>https://github.com/Rayeonjin/Uncomew/releases/tag/v0.2.0-alpha.1</link>
+      <guid isPermaLink="false">Uncomew:release:v0.2.0-alpha.1</guid>
+      <pubDate>Thu, 12 Nov 2026 14:24:46 GMT</pubDate>
+      <category>Uncomew</category>
+      <description>Uncomew · 베타 릴리스 · Beta release</description>
+    </item>
     <item>
       <title>Studio RAYEONJIN 사이트 공개</title>
       <link>https://studio-rayeonjin.vercel.app/</link>

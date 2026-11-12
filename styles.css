@@ -212,6 +212,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
 
 .app-grid { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .app-next { background: transparent; border-style: dashed; box-shadow: none; }
+.app-grid .app-next { grid-column: 1 / -1; }
 .app-next h4 { font-size: 22px; }
 
 .note { font-size: 15px; color: var(--ink-faint); }
