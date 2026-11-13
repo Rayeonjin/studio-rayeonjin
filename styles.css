@@ -420,7 +420,13 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 .hero-links a:hover, .links a:hover { text-decoration-color: currentColor; }
 .hero-links a::after { content: none; }
 .lede, .about-lede { font-size: 16.5px; }
-.section { padding-top: 44px; }
+.section { --section-gap: clamp(64px, 9vw, 112px); padding-top: var(--section-gap); }
+/* A page-wide rule halfway into the gap marks where each section starts. */
+.section::after {
+  content: ""; position: absolute; left: 0; right: 0;
+  top: calc(var(--section-gap) / 2);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+}
 
 /* entries, not cards */
 .platform { color: var(--note); font-family: inherit; font-size: 14px; letter-spacing: 0; text-transform: none; }
@@ -455,6 +461,8 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
   .hero, .section { grid-template-columns: minmax(0, 1fr); padding-left: 18px; }
   .hero > *, .section > * { grid-column: 1; }
   .hero .eyebrow, .section-head { grid-column: 1; grid-row: auto; padding: 0 0 10px; }
+  .section-head { margin-bottom: 8px; }
+  .section-lede { margin-top: 0; }
 }
 
 /* One continuous margin rule per section instead of a border on each child. */
@@ -464,6 +472,8 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
   border-left: 1.5px solid var(--margin-rule);
 }
 .hero::before { top: 40px; }
+/* The margin rule restarts with each section instead of running through the gap. */
+.section::before { top: var(--section-gap); }
 @media (max-width: 720px) {
   .hero::before, .section::before { left: 0; }
 }
