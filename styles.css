@@ -64,7 +64,6 @@ p { margin: 0; }
   word-break: normal; line-break: strict;
 }
 :lang(en) body, :lang(es) body, body:lang(en), body:lang(es) { word-break: normal; }
-:lang(es) p { hyphens: auto; }
 .hero-en:empty { display: none; }
 /* Latin-script copy runs longer than Korean; give paragraphs a little more room. */
 :lang(en) .lede, :lang(es) .lede, :lang(en) .about-lede, :lang(es) .about-lede { max-width: 46em; }
