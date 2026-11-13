@@ -24,3 +24,10 @@ python3 -m http.server 4321 --directory .
 - `.github/workflows/stats.yml`이 3시간마다(그리고 main에 push할 때) `scripts/build-stats.js`를 실행해 Rayeonjin 조직의 공개 저장소 기록을 모읍니다. 내용이 바뀐 경우에만 커밋하고, 그 커밋으로 Vercel이 다시 배포합니다.
 - 커밋 작성자 정보는 수집하지 않습니다.
 - 로컬에서 직접 갱신하려면: `GITHUB_TOKEN=$(gh auth token) node scripts/build-stats.js`
+
+## 제목 글꼴
+
+- 제목(h1·h2·h4)은 Noto Serif(OFL-1.1)를 씁니다. 용량을 줄이려고 제목에 쓰인 글자만 남긴 파일을 `assets/fonts/`에 둡니다(한국어·영어·스페인어용, 중국어용 각 20KB대).
+- 제목 문구를 바꾸면 다시 만들어 주세요. 원본 글꼴은 https://github.com/notofonts/noto-cjk/tree/main/Serif/SubsetOTF 에서 받습니다.
+  `pip install fonttools brotli && python3 scripts/subset-fonts.py NotoSerifKR-Bold.otf NotoSerifSC-Bold.otf`
+- 빠진 글자는 기기의 기본 명조로 대체되어 보입니다.
