@@ -22,7 +22,7 @@
   <link rel="alternate" hreflang="x-default" href="https://studio-rayeonjin.vercel.app/">
   <link rel="alternate" type="application/rss+xml" title="Studio RAYEONJIN" href="/feed.xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#f5efe4">
+  <meta name="theme-color" content="#f8fafc">
   <script>
     // Before first paint: saved theme, and the page language (URL > saved > browser > English).
     (function () {
@@ -295,7 +295,7 @@
         const dark = root.dataset.theme === "dark";
         btn.setAttribute("aria-pressed", String(dark));
         btn.setAttribute("aria-label", dark ? t("a11y.toLight", "라이트 모드로 바꾸기") : t("a11y.toDark", "다크 모드로 바꾸기"));
-        meta.setAttribute("content", dark ? "#16130f" : "#f5efe4");
+        meta.setAttribute("content", dark ? "#141b25" : "#f8fafc");
       };
       btn.addEventListener("click", () => {
         const dark = root.dataset.theme !== "dark";
