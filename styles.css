@@ -358,7 +358,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
   --card: #ffffff;
   --ink: #1e2a3a;
   --ink-soft: #3d4b5e;
-  --ink-faint: #7a8597;
+  --ink-faint: #5f6b7d;
   --line: #d3dbe6;
   --grid: #ebeff5;
   --margin-rule: #e7a59f;
@@ -482,3 +482,44 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 
 /* Chinese headings use the Simplified Chinese cut of the same family. */
 :root:lang(zh) { --heading: "Rayeonjin Headings SC", -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif; }
+
+/* Small phones: list the summary numbers as label/value rows instead of a
+   cramped 2×2 grid, and keep the top bar on one row at 320px. */
+@media (max-width: 420px) {
+  .tiles { grid-template-columns: 1fr; gap: 8px; }
+  .tile { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 12px; padding: 12px 14px; }
+  .tile-value { font-size: 20px; white-space: nowrap; }
+}
+@media (max-width: 360px) {
+  .lang-picker svg { display: none; }
+  .lang-picker { padding: 0 9px; }
+}
+
+/* Tablets (721–960px): a narrower margin column so entries, tiles and the
+   repository table have room; the GitHub link stays in the hero and footer. */
+@media (max-width: 960px) {
+  .menu-gh { display: none; }
+}
+@media (min-width: 721px) and (max-width: 960px) {
+  .hero, .section { grid-template-columns: 112px minmax(0, 1fr); column-gap: 24px; }
+  .hero::before, .section::before { left: 124px; }
+  .hero .eyebrow, .section-head { padding-right: 12px; }
+  .section-head h2 { font-size: 17px; }
+  .tiles { grid-template-columns: 1fr 1fr; }
+}
+
+/* Repository table: relative time sits under the date; narrower screens drop
+   the language column, and phones also drop stars and badges, so the table
+   fits without sideways scrolling. */
+.repo-table .rel { display: block; font-size: 13px; color: var(--ink-faint); }
+@media (max-width: 960px) {
+  .repo-table th:nth-child(4), .repo-table td:nth-child(4) { display: none; }
+}
+@media (max-width: 420px) {
+  .repo-table th, .repo-table td { padding: 10px 10px; font-size: 14px; white-space: normal; overflow-wrap: anywhere; }
+  .repo-table .pill, .repo-table .rel, .repo-table th:nth-child(5), .repo-table td:nth-child(5) { display: none; }
+}
+
+/* Keyboard focus uses the notebook red so it stands out on the grid (≥ 3:1). */
+:focus-visible { outline-color: var(--note); }
+.lang-picker:focus-within { outline-color: var(--note); }
