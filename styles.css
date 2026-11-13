@@ -360,10 +360,10 @@ code { font-family: var(--mono); font-size: 0.9em; }
   --ink-soft: #3d4b5e;
   --ink-faint: #7a8597;
   --line: #d3dbe6;
-  --grid: #e3e9f1;
+  --grid: #ebeff5;
   --margin-rule: #e7a59f;
-  --note: #c8372d;
-  --highlight: #fff0a0;
+  --note: #b4473b;
+  --highlight: #fbefb4;
   --accent: #e2852f;
   --accent-ink: #1e2a3a;
   --accent-wash: #fff0a0;
@@ -381,7 +381,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
   --ink-soft: #c2ccd8;
   --ink-faint: #8693a5;
   --line: #2c394a;
-  --grid: #1c2633;
+  --grid: #19222e;
   --margin-rule: #7a3c38;
   --note: #f0857a;
   --highlight: #5c5220;
@@ -416,7 +416,8 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 .hero h1 { font-size: clamp(30px, 4.2vw, 46px); line-height: 1.25; letter-spacing: -0.02em; }
 .hero-en { font-style: normal; }
 .hero-links { font-family: inherit; }
-.hero-links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--margin-rule); text-underline-offset: 4px; }
+.hero-links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
+.hero-links a:hover, .links a:hover { text-decoration-color: currentColor; }
 .hero-links a::after { content: none; }
 .lede, .about-lede { font-size: 16.5px; }
 .section { padding-top: 44px; }
@@ -429,18 +430,20 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 }
 .app-feature { grid-template-columns: 1fr; gap: 18px; }
 .app-feature .app-body { padding: 0; }
-.app-media { max-width: 560px; border-radius: 6px; box-shadow: 4px 4px 0 var(--line); }
+.app-media { max-width: 560px; border-radius: 6px; border: 1px solid var(--line); box-shadow: none; }
 .app-grid { grid-template-columns: 1fr; gap: 36px; margin-top: 40px; }
-.app h4 { font-size: 24px; display: inline; background: linear-gradient(transparent 58%, var(--highlight) 58%); padding: 0 4px; margin-left: -4px; }
+.app h4 { display: block; font-size: 24px; text-decoration: underline; text-decoration-color: var(--highlight); text-decoration-thickness: 0.4em; text-underline-offset: -0.22em; text-decoration-skip-ink: none; }
 .app-title { align-items: flex-start; }
 .app-icon { width: 52px; height: 52px; border-radius: 12px; }
-.tag { background: transparent; color: var(--note); padding: 0 0 0 4px; font-size: 13px; }
+.app h4 .tag { margin-left: 8px; vertical-align: 0.3em; text-decoration: none; }
+.tag { display: inline-block; background: transparent; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; font-size: 12px; font-weight: 600; letter-spacing: 0; }
+.tag-quiet { border-style: dashed; }
 .meta li { background: transparent; padding: 0; color: var(--ink-faint); }
 .meta li + li::before { content: "/ "; color: var(--line); }
-.links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--margin-rule); text-underline-offset: 4px; }
+.links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
 .links a::after { content: none; }
 .app-next { border-top: 1.5px dashed var(--line) !important; padding-top: 24px !important; }
-.app-next h4 { background: none; font-size: 18px; color: var(--ink-faint); }
+.app-next h4 { background: none; text-decoration: none; font-size: 18px; color: var(--ink-faint); }
 
 /* dashboard & lists keep the paper feel */
 .tiles .tile, .chart-card, .repo-table-wrap { background: var(--card); box-shadow: none; border-radius: 4px; }
