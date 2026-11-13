@@ -291,7 +291,7 @@
       "faq.title": "Preguntas frecuentes",
       "faq.q1": "¿De verdad es gratis?",
       "faq.a1": `Sí. Descargarlo y compilarlo no cuesta nada.${BR}La licencia cambia según el proyecto, así que consulta el archivo LICENSE de cada repositorio.`,
-      "faq.q3": "¿Puedo usar el código y modificarlo?",
+      "faq.q3": '¿Puedo usar el código <span class="nw">y modificarlo?</span>',
       "faq.a3": `Claro que sí. Haz un fork, modifícalo o úsalo como punto de partida para algo nuevo.${BR}Uncomew (MIT) y MemoWeaver (Apache-2.0) también admiten uso comercial.${BR}Solo mantén los avisos de copyright y licencia.${BR}Catoshi solo puede modificarse y compartirse para uso personal no comercial.${BR}Si construyes algo, cuéntanoslo por ${TG}. Nos encantará verlo.`,
       "faq.q2": "¿Dónde puedo enviar comentarios o informar de un problema?",
       "faq.a2": `Escríbenos en el repositorio de GitHub del proyecto o por ${TG}.${BR}Ayuda mucho que incluyas la versión, tu entorno, lo que ocurrió y los mensajes de error.${BR}Puede que tardemos en responder; gracias por tu paciencia.`,
