@@ -335,16 +335,16 @@ code { font-family: var(--mono); font-size: 0.9em; }
 
 
 
-/* Heading fonts: Noto Serif (OFL-1.1, see assets/fonts/OFL.txt), cut down to
-   the characters headings use by scripts/subset-fonts.py. */
+/* Heading fonts: IBM Plex Sans KR / SC Bold (OFL-1.1, see assets/fonts/OFL.txt),
+   cut down to the characters headings use and renamed by scripts/subset-fonts.py. */
 @font-face {
-  font-family: "Rayeonjin Serif";
-  src: url("assets/fonts/noto-serif-kr-headings.woff2") format("woff2");
+  font-family: "Rayeonjin Headings KR";
+  src: url("assets/fonts/headings-kr.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 @font-face {
-  font-family: "Rayeonjin Serif SC";
-  src: url("assets/fonts/noto-serif-sc-headings.woff2") format("woff2");
+  font-family: "Rayeonjin Headings SC";
+  src: url("assets/fonts/headings-sc.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
@@ -371,7 +371,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
   --shadow: none;
   --chart-bar: #3b5b85;
   --chart-bar-active: #c8372d;
-  --serif: "Rayeonjin Serif", "Noto Serif KR", "AppleMyungjo", "Nanum Myeongjo", Batang, Georgia, serif;
+  --heading: "Rayeonjin Headings KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
 :root[data-theme="dark"] {
   --bg: #141b25;
@@ -398,7 +398,7 @@ body {
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 24px 24px;
 }
-h1, h2, h4 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.01em; }
+h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.02em; }
 
 /* two-column notebook: margin | entries */
 .hero, .section { display: grid; grid-template-columns: 170px minmax(0, 1fr); column-gap: 32px; }
@@ -414,7 +414,7 @@ h1, h2, h4 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.01e
 .section-head { margin-bottom: 0; }
 .hero { padding: 48px 0 40px; }
 .hero h1 { font-size: clamp(30px, 4.2vw, 46px); line-height: 1.25; letter-spacing: -0.02em; }
-.hero-en { font-family: var(--serif); font-style: italic; }
+.hero-en { font-style: normal; }
 .hero-links { font-family: inherit; }
 .hero-links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--margin-rule); text-underline-offset: 4px; }
 .hero-links a::after { content: none; }
@@ -467,5 +467,5 @@ h1, h2, h4 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.01e
 .repo-table th, .repo-table td { padding: 12px 14px; }
 .tiles .tile, .chart-card, .repo-table-wrap { border: 1px solid var(--line); }
 
-/* Chinese headings use the Simplified Chinese cut of the same typeface. */
-:root:lang(zh) { --serif: "Rayeonjin Serif SC", "Noto Serif SC", "Songti SC", "STSong", SimSun, serif; }
+/* Chinese headings use the Simplified Chinese cut of the same family. */
+:root:lang(zh) { --heading: "Rayeonjin Headings SC", -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif; }

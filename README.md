@@ -27,7 +27,7 @@ python3 -m http.server 4321 --directory .
 
 ## 제목 글꼴
 
-- 제목(h1·h2·h4)은 Noto Serif(OFL-1.1)를 씁니다. 용량을 줄이려고 제목에 쓰인 글자만 남긴 파일을 `assets/fonts/`에 둡니다(한국어·영어·스페인어용, 중국어용 각 20KB대).
-- 제목 문구를 바꾸면 다시 만들어 주세요. 원본 글꼴은 https://github.com/notofonts/noto-cjk/tree/main/Serif/SubsetOTF 에서 받습니다.
-  `pip install fonttools brotli && python3 scripts/subset-fonts.py NotoSerifKR-Bold.otf NotoSerifSC-Bold.otf`
-- 빠진 글자는 기기의 기본 명조로 대체되어 보입니다.
+- 제목(h1·h2·h4)은 IBM Plex Sans KR / SC Bold(OFL-1.1)를 바탕으로 합니다. 용량을 줄이려고 제목에 쓰인 글자만 남긴 파일을 `assets/fonts/`에 둡니다(각 10KB대). 라이선스의 예약 이름 규정에 따라 줄인 파일의 글꼴 이름은 "Rayeonjin Headings"입니다.
+- 제목 문구를 바꾸면 다시 만들어 주세요. 원본은 https://github.com/IBM/plex/tree/master/packages 에서 받습니다.
+  `pip install fonttools brotli && python3 scripts/subset-fonts.py IBMPlexSansKR-Bold.otf IBMPlexSansSC-Bold.otf`
+- 빠진 글자는 기기의 기본 고딕으로 대체되어 보입니다.
