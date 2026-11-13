@@ -147,17 +147,6 @@ code { font-family: var(--mono); font-size: 0.9em; }
 .btn:hover { transform: translateY(-1px); }
 .btn-primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
-/* ---------- principles ---------- */
-.principles {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-}
-.principles article { padding: 32px 28px 36px 0; }
-.principles article + article { padding-left: 28px; border-left: 1px solid var(--line); }
-.num { font-family: var(--mono); font-size: 13px; color: var(--accent-ink); }
-.principles h3 { font-size: 18px; margin: 10px 0 10px; }
-.principles p { color: var(--ink-soft); font-size: 16px; }
-
 /* ---------- sections ---------- */
 .section-tight { padding-top: 0; }
 .about-lede { max-width: 40em; font-size: 17px; color: var(--ink-soft); margin-bottom: 36px; display: flex; flex-direction: column; gap: 12px; }
@@ -319,9 +308,6 @@ code { font-family: var(--mono); font-size: 0.9em; }
 @media (max-width: 960px) {
   .app-feature { grid-template-columns: 1fr; gap: 8px; }
   .app-feature .app-body { padding: 12px 8px 8px; }
-  .principles { grid-template-columns: 1fr; }
-  .principles article, .principles article + article { padding: 26px 0; border-left: 0; }
-  .principles article + article { border-top: 1px solid var(--line); }
   .app-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
