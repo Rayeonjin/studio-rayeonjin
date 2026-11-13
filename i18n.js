@@ -231,7 +231,7 @@
       "faq.q3": "可以拿代码去改、去用吗？",
       "faq.a3": `当然可以。欢迎 fork 后自行修改，或者拿来当作新项目的起点。${BR}Uncomew（MIT）和 MemoWeaver（Apache-2.0）也可用于商业用途，${BR}只需保留版权和许可声明。${BR}Catoshi 仅可在非商业的个人使用范围内修改和分享。${BR}如果你做出了什么，欢迎在 ${TG} 上告诉我们，很期待看到。`,
       "faq.q2": "有建议或遇到问题，该怎么反馈？",
-      "faq.a2": `请通过对应项目的 GitHub 仓库或 ${TG} 告诉我们。${BR}附上所用版本、运行环境、具体现象和错误信息，会很有帮助。${BR}回复可能不够及时，还请见谅。`,
+      "faq.a2": `请通过对应项目的 GitHub 仓库或 ${TG} 告诉我们。${BR}附上所用版本、运行环境、具体现象和错误信息，会很有帮助。${BR}回复可能不够及时，<span class="nw">还请见谅</span>。`,
       "footer.fine": "© 2026 Rayeonjin · 本站不使用 Cookie，也不使用任何统计分析工具。",
     },
     es: {
@@ -290,11 +290,11 @@
       "history.rss": "Suscríbete por RSS",
       "faq.title": "Preguntas frecuentes",
       "faq.q1": "¿De verdad es gratis?",
-      "faq.a1": `Sí. Descargarlo y compilarlo no cuesta nada.${BR}La licencia cambia según el proyecto, así que consulta el archivo LICENSE de cada repositorio.`,
+      "faq.a1": `Sí. Descargarlo y compilarlo no cuesta nada.${BR}La licencia cambia según el proyecto, así que consulta el archivo LICENSE <span class="nw">de cada repositorio</span>.`,
       "faq.q3": '¿Puedo usar el código <span class="nw">y modificarlo?</span>',
       "faq.a3": `Claro que sí. Haz un fork, modifícalo o úsalo como punto de partida para algo nuevo.${BR}Uncomew (MIT) y MemoWeaver (Apache-2.0) también admiten uso comercial.${BR}Solo mantén los avisos de copyright y licencia.${BR}Catoshi solo puede modificarse y compartirse para uso personal no comercial.${BR}Si construyes algo, cuéntanoslo por ${TG}. Nos encantará verlo.`,
       "faq.q2": "¿Dónde puedo enviar comentarios o informar de un problema?",
-      "faq.a2": `Escríbenos en el repositorio de GitHub del proyecto o por ${TG}.${BR}Ayuda mucho que incluyas la versión, tu entorno, lo que ocurrió y los mensajes de error.${BR}Puede que tardemos en responder; gracias por tu paciencia.`,
+      "faq.a2": `Escríbenos en el repositorio de GitHub del proyecto o por ${TG}.${BR}Ayuda mucho que incluyas la versión, tu entorno, lo que ocurrió y los mensajes de error.${BR}Puede que tardemos en responder; gracias por <span class="nw">tu paciencia</span>.`,
       "footer.fine": "© 2026 Rayeonjin · Este sitio no usa cookies ni herramientas de analítica.",
     },
   };

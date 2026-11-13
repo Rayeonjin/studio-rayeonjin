@@ -204,7 +204,7 @@
       return el("tr", {},
         name,
         ver,
-        el("td", { text: `${fullDate(r.pushedAt)} (${relative(r.pushedAt)})` }),
+        el("td", {}, fullDate(r.pushedAt), el("span", { class: "rel", text: relative(r.pushedAt) })),
         el("td", { text: r.language || "–" }),
         el("td", { class: "num-col", text: String(r.stars) }));
     }));
