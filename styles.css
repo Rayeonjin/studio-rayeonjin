@@ -335,6 +335,19 @@ code { font-family: var(--mono); font-size: 0.9em; }
 
 
 
+/* Heading fonts: Noto Serif (OFL-1.1, see assets/fonts/OFL.txt), cut down to
+   the characters headings use by scripts/subset-fonts.py. */
+@font-face {
+  font-family: "Rayeonjin Serif";
+  src: url("assets/fonts/noto-serif-kr-headings.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Rayeonjin Serif SC";
+  src: url("assets/fonts/noto-serif-sc-headings.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
 /* ==========================================================================
    Notebook theme (direction B): grid paper, margin notes, highlighter.
    Layered on top of the base rules above.
@@ -358,7 +371,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
   --shadow: none;
   --chart-bar: #3b5b85;
   --chart-bar-active: #c8372d;
-  --serif: "AppleMyungjo", "Noto Serif KR", "Nanum Myeongjo", "New York", Georgia, serif;
+  --serif: "Rayeonjin Serif", "Noto Serif KR", "AppleMyungjo", "Nanum Myeongjo", Batang, Georgia, serif;
 }
 :root[data-theme="dark"] {
   --bg: #141b25;
@@ -453,3 +466,6 @@ h1, h2, h4 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.01e
 }
 .repo-table th, .repo-table td { padding: 12px 14px; }
 .tiles .tile, .chart-card, .repo-table-wrap { border: 1px solid var(--line); }
+
+/* Chinese headings use the Simplified Chinese cut of the same typeface. */
+:root:lang(zh) { --serif: "Rayeonjin Serif SC", "Noto Serif SC", "Songti SC", "STSong", SimSun, serif; }
