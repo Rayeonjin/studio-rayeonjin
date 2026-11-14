@@ -83,14 +83,23 @@
 
     <section class="hero wrap">
       <p class="eyebrow">./Rayeonjin</p>
-      <h1 data-i18n="hero.title">작고 다정한<br>소프트웨어를 만듭니다.</h1>
-      <p class="hero-en" data-i18n="hero.tagline">Small, kind software.</p>
-      <p class="lede" data-i18n="hero.lede">Studio RAYEONJIN의 앱을 모아 둔 곳입니다.<br class="w"> 일상 가까이에 두고 <span class="nw">오래 쓸</span> 도구를 하나씩 만들고 있습니다.<br class="w"> 지금은 macOS 앱이 중심이고, 다른 플랫폼의 작업도 <span class="nw">준비되는 대로</span> 올립니다.</p>
-      <p class="hero-links">
+      <div class="hero-main">
+        <div class="hero-text">
+          <h1 data-i18n="hero.title">작고 다정한<br>소프트웨어를 만듭니다.</h1>
+          <p class="hero-en" data-i18n="hero.tagline">Small, kind software.</p>
+          <p class="lede" data-i18n="hero.lede">Studio RAYEONJIN의 앱을 모아 둔 곳입니다.<br class="w"> 일상 가까이에 두고 <span class="nw">오래 쓸</span> 도구를 하나씩 만들고 있습니다.<br class="w"> 지금은 macOS 앱이 중심이고, 다른 플랫폼의 작업도 <span class="nw">준비되는 대로</span> 올립니다.</p>
+            <p class="hero-links">
         <a href="https://github.com/Rayeonjin">GitHub</a>
         <a href="https://t.me/Rayeonjin">Telegram</a>
         <a href="/feed.xml">RSS</a>
       </p>
+        </div>
+        <ul class="shelf" data-i18n-attr="aria-label:shelf.label" aria-label="앱 목록">
+          <li><a href="#app-catoshi"><img src="assets/catoshi-icon.png" alt="" width="40" height="40"><span><strong>Catoshi</strong><em data-i18n="shelf.catoshi">메뉴바 고양이와 BTC 시세</em></span></a></li>
+          <li><a href="#app-uncomew"><img src="assets/uncomew-icon.svg" alt="" width="40" height="40"><span><strong>Uncomew</strong><em data-i18n="shelf.uncomew">큰 파일 찾기와 앱 정리</em></span></a></li>
+          <li><a href="#app-memoweaver"><img src="assets/memoweaver-icon.png" alt="" width="40" height="40"><span><strong>MemoWeaver</strong><em data-i18n="shelf.memo">메모끼리 연결되는 노트</em></span></a></li>
+        </ul>
+      </div>
     </section>
 
     <section id="about" class="wrap section section-tight">
@@ -114,9 +123,14 @@
       <h3 class="platform">macOS</h3>
       <p class="platform-note" data-i18n="works.macNote">macOS 앱은 완성된 설치 파일 대신 소스로 배포합니다.<br class="w"> 무료 Apple 개발 도구로 각자 Mac에서 <span class="nw">직접 빌드해</span> 설치합니다.<br class="w"> 처음이라도 앱마다 있는 설치 가이드를 <span class="nw">따라 하면 됩니다.</span></p>
 
-      <article class="app app-feature">
-        <div class="app-media">
-          <div class="shot-bar">
+      <article class="app" id="app-catoshi">
+        <img class="app-icon" src="assets/catoshi-icon.png" alt="" width="64" height="64">
+        <div class="app-main">
+          <h4>Catoshi <span class="tag">Beta</span></h4>
+          <p class="app-en" data-i18n="catoshi.tagline">A little cat that lives in your menu bar.</p>
+          <p data-i18n="catoshi.desc">메뉴바를 산책하다가 <span class="nw">식빵 자세로</span> 쉬기도 하는 작은 고양이.<br class="w"> 그 곁에서 BTC 시세와 김치프리미엄,<br class="w"> 시장 흐름을 함께 확인합니다.<br class="w"> 거래소 계정이나 <span class="nw">API Key는</span> <span class="nw">필요 없습니다.</span></p>
+          <div class="app-media">
+            <div class="shot-bar">
             <img src="assets/catoshi-menubar.png" data-i18n-attr="alt:catoshi.altBar" alt="macOS 메뉴바에 앉은 Catoshi 고양이와 BTC 시세, 김치프리미엄 표시" loading="lazy" width="1100" height="30">
           </div>
           <details class="shot-more">
@@ -126,77 +140,65 @@
               <p class="shot-note" data-i18n="catoshi.shotNote">가상 시세로 재현한 화면입니다.</p>
             </div>
           </details>
-        </div>
-        <div class="app-body">
-          <div class="app-title">
-            <img class="app-icon" src="assets/catoshi-icon.png" alt="" width="64" height="64">
-            <div>
-              <h4>Catoshi <span class="tag">Beta</span></h4>
-              <p class="app-en" data-i18n="catoshi.tagline">A little cat that lives in your menu bar.</p>
-            </div>
           </div>
-          <p data-i18n="catoshi.desc">메뉴바를 산책하다가 <span class="nw">식빵 자세로</span> 쉬기도 하는 작은 고양이.<br class="w"> 그 곁에서 BTC 시세와 김치프리미엄,<br class="w"> 시장 흐름을 함께 확인합니다.<br class="w"> 거래소 계정이나 <span class="nw">API Key는</span> <span class="nw">필요 없습니다.</span></p>
-          <ul class="meta">
+          <div class="app-foot">
+            <ul class="meta">
             <li>macOS 13+</li>
             <li>Apple Silicon · Intel</li>
             <li data-i18n="catoshi.license">비상업적 개인 사용 <span class="nw">(Catoshi Community License)</span></li>
           </ul>
-          <div class="links">
+            <div class="links">
             <a href="https://github.com/Rayeonjin/Catoshi">GitHub</a>
             <a href="https://github.com/Rayeonjin/Catoshi/releases">Releases</a>
             <a href="https://github.com/Rayeonjin/Catoshi/blob/main/docs/BUILDING.md" data-i18n="common.installGuide">설치 가이드</a>
           </div>
+          </div>
         </div>
       </article>
-
-      <div class="app-grid">
-        <article class="app">
-          <div class="app-title">
-            <img class="app-icon" src="assets/uncomew-icon.svg" alt="" width="64" height="64">
-            <div>
-              <h4>Uncomew <span class="tag">Alpha</span></h4>
-              <p class="app-en" data-i18n="uncomew.tagline">Find what’s taking up space.</p>
-            </div>
-          </div>
+      <article class="app" id="app-uncomew">
+        <img class="app-icon" src="assets/uncomew-icon.svg" alt="" width="64" height="64">
+        <div class="app-main">
+          <h4>Uncomew <span class="tag">Alpha</span></h4>
+          <p class="app-en" data-i18n="uncomew.tagline">Find what’s taking up space.</p>
           <p data-i18n="uncomew.desc">저장 공간이 부족할 때, Mac에 숨어 있는 <span class="nw">큰 파일과 폴더를</span> 찾아 <span class="nw">용도를 확인합니다.</span><br class="w"> 크기와 마지막 사용 기록을 참고해 <span class="nw">정리할 앱을</span> <span class="nw">검토할 수 있습니다.</span><br class="w"> 자동으로 지우거나 <span class="nw">휴지통을 비우지 않습니다.</span> <span class="nw">무엇을 지울지는</span> <span class="nw">직접 정합니다.</span></p>
-          <ul class="meta">
+          <div class="app-foot">
+            <ul class="meta">
             <li>macOS 13+</li>
             <li>MIT</li>
           </ul>
-          <div class="links">
+            <div class="links">
             <a href="https://github.com/Rayeonjin/Uncomew">GitHub</a>
             <a href="https://github.com/Rayeonjin/Uncomew/releases">Releases</a>
             <a href="https://github.com/Rayeonjin/Uncomew/blob/main/docs/BUILDING.md" data-i18n="common.installGuide">설치 가이드</a>
           </div>
-        </article>
-
-        <article class="app">
-          <div class="app-title">
-            <img class="app-icon" src="assets/memoweaver-icon.png" alt="" width="64" height="64">
-            <div>
-              <h4>MemoWeaver <span class="tag tag-quiet" data-i18n="memo.status">개발 중</span></h4>
-              <p class="app-en" data-i18n="memo.tagline">Local-first notes for macOS.</p>
-            </div>
           </div>
+        </div>
+      </article>
+      <article class="app" id="app-memoweaver">
+        <img class="app-icon" src="assets/memoweaver-icon.png" alt="" width="64" height="64">
+        <div class="app-main">
+          <h4>MemoWeaver <span class="tag tag-quiet" data-i18n="memo.status">개발 중</span></h4>
+          <p class="app-en" data-i18n="memo.tagline">Local-first notes for macOS.</p>
           <p data-i18n="memo.desc">빠르게 적어 두고, 나중에 <span class="nw">메모끼리 연결해 보는</span> 노트.<br class="w"> Markdown은 필요할 때만 쓰고,<br class="w"> 원하면 <span class="nw">로컬 AI가</span> <span class="nw">생각 사이의 연결을</span> 찾아줍니다.<br class="w"> 적어 둔 원문은 앱이 <span class="nw">함부로 바꾸지 않습니다.</span></p>
-          <ul class="meta">
+          <div class="app-foot">
+            <ul class="meta">
             <li>macOS 14+</li>
             <li>Apache-2.0</li>
           </ul>
-          <div class="links">
+            <div class="links">
             <a href="https://github.com/Rayeonjin/MemoWeaver">GitHub</a>
             <a href="https://github.com/Rayeonjin/MemoWeaver#build-from-source-macos-14" data-i18n="common.installGuide">설치 가이드</a>
           </div>
-        </article>
-
-        <article class="app app-next">
+          </div>
+        </div>
+      </article>
+      <article class="app-next">
           <h4 data-i18n="next.title">다음 작업 준비 중</h4>
           <p data-i18n="next.body">새로운 앱과 다른 플랫폼의 작업도 <span class="nw">준비되는 대로</span> 이곳에 올립니다.<br class="w"> 소식은 GitHub과 Telegram에서 <span class="nw">먼저 전합니다.</span></p>
           <div class="links">
             <a href="https://t.me/Rayeonjin" data-i18n="next.link">Telegram 소식 받기</a>
           </div>
         </article>
-      </div>
     </section>
 
     <section id="dashboard" class="wrap section">
