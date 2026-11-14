@@ -110,7 +110,7 @@
   const PAGE = {
     en: {
       "meta.title": "Studio RAYEONJIN · Small apps, made out of need",
-      "meta.description": "The small apps from Studio RAYEONJIN: everyday tools built to last, with their source code out in the open.",
+      "meta.description": "Studio RAYEONJIN makes small everyday apps built to last, with their source code public on GitHub.",
       "a11y.home": "Studio RAYEONJIN home",
       "a11y.mainMenu": "Main menu",
       "a11y.language": "Language",
@@ -122,7 +122,7 @@
       "nav.faq": "FAQ",
       "hero.title": "Small apps,<br>made out of need",
       "hero.tagline": "",
-      "hero.lede": `This is where Studio RAYEONJIN’s apps live.${BR}Everyday tools, made one at a time and built to last.${BR}For now it’s mostly macOS apps. Work for other platforms will show up here when it’s ready.`,
+      "hero.lede": `Studio RAYEONJIN makes everyday tools, one at a time, built to last.${BR}The source for every app is public on GitHub.${BR}For now it’s mostly macOS apps. Work for other platforms will be introduced here when it’s ready.`,
       "about.title": "Studio RAYEONJIN",
       "about.p1": `Every app here starts from a real, everyday need.${BR}Each one is used and refined day to day before it’s shared with anyone who needs the same thing.`,
       "about.why": `The reason the source is public is simple:${BR}nobody with the same need should have to burn time and effort on the same <span class="nw">trial and error</span>.${BR}Put that time into a different problem instead, and if you share what you build too, all the better.`,
@@ -178,7 +178,7 @@
     },
     zh: {
       "meta.title": "Studio RAYEONJIN · 因为需要而做的小应用",
-      "meta.description": "Studio RAYEONJIN 的小应用合集：放在手边、能长久使用的日常工具，源代码全部公开。",
+      "meta.description": "Studio RAYEONJIN 制作放在手边、能长久使用的日常小应用，源代码全部公开在 GitHub 上。",
       "a11y.home": "返回 Studio RAYEONJIN 首页",
       "a11y.mainMenu": "主菜单",
       "a11y.language": "语言",
@@ -190,7 +190,7 @@
       "nav.faq": "常见问题",
       "hero.title": "因为需要<br>而做的小应用",
       "hero.tagline": "Small apps, made out of need.",
-      "hero.lede": `这里收录了 Studio RAYEONJIN 的应用。${BR}都是放在手边、能长久用下去的日常工具，一个一个慢慢做。${BR}目前以 macOS 应用为主，其他平台的作品准备好后也会发布在这里。`,
+      "hero.lede": `Studio RAYEONJIN 在做放在手边、能长久用下去的日常工具，<span class="nw">一个一个慢慢来。</span>${BR}所有应用的源代码都公开在 GitHub 上。${BR}目前以 macOS 应用为主，其他平台的作品准备好后也会在这里介绍。`,
       "about.title": "Studio RAYEONJIN",
       "about.p1": `这里的每个应用，都源于日常中的真实需求。${BR}经过反复使用和打磨后，再开放给有同样需要的人。`,
       "about.why": `公开源代码的理由很简单：${BR}希望有同样需要的人，不必再把时间和精力花在同样的反复试错上。${BR}省下的时间可以去解决别的问题；如果你也愿意把成果公开出来，那就再好不过了。`,
@@ -246,7 +246,7 @@
     },
     es: {
       "meta.title": "Studio RAYEONJIN · Pequeñas apps hechas porque hacían falta",
-      "meta.description": "Las pequeñas apps de Studio RAYEONJIN: herramientas para el día a día, pensadas para durar y con el código fuente a la vista.",
+      "meta.description": "Studio RAYEONJIN hace pequeñas apps para el día a día, pensadas para durar y con el código fuente publicado en GitHub.",
       "a11y.home": "Inicio de Studio RAYEONJIN",
       "a11y.mainMenu": "Menú principal",
       "a11y.language": "Idioma",
@@ -258,7 +258,7 @@
       "nav.faq": "FAQ",
       "hero.title": "Pequeñas apps,<br>hechas porque <span class=\"nw\">hacían falta</span>",
       "hero.tagline": "Small apps, made out of need.",
-      "hero.lede": `Aquí están las apps de Studio RAYEONJIN.${BR}Herramientas para el día a día, hechas una a una y pensadas para durar.${BR}Por ahora son sobre todo apps para macOS; lo demás llegará aquí cuando esté listo.`,
+      "hero.lede": `Studio RAYEONJIN hace herramientas para el día a día, una a una y pensadas para durar.${BR}El código de todas las apps está publicado en GitHub.${BR}Por ahora son sobre todo apps para macOS; lo demás se presentará aquí cuando esté listo.`,
       "about.title": "Studio RAYEONJIN",
       "about.p1": `Cada app nace de una necesidad real <span class="nw">del día a día</span>.${BR}Primero la usamos y pulimos a fondo; después la compartimos con quien tenga la misma necesidad.`,
       "about.why": `El motivo para publicar el código es sencillo:${BR}que nadie con la misma necesidad pierda tiempo y esfuerzo repitiendo el mismo <span class="nw">ensayo y error</span>.${BR}Dedica ese tiempo a otro problema y, si además compartes lo que construyas, mucho mejor.`,
