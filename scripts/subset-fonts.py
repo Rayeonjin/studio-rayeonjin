@@ -2,7 +2,9 @@
 """Build the small heading fonts in assets/fonts/.
 
 Headings (h1, h2, h4) use IBM Plex Sans KR (Korean, English, Spanish) and
-IBM Plex Sans SC (Chinese), Bold. Shipping the full fonts would cost ~8 MB,
+IBM Plex Sans SC (Chinese), Bold. Plex Sans KR has no accented Latin letters
+(á, ñ, …), so those come from IBM Plex Sans Bold, which shares its Latin
+design and metrics; styles.css loads that file only for U+00A0-024F. Shipping the full fonts would cost ~8 MB,
 so this keeps only the characters headings actually use, in all four
 languages, plus printable ASCII.
 
@@ -12,7 +14,7 @@ files are renamed "Rayeonjin Headings" as the license requires.
 Run again whenever a heading changes:
 
     pip install fonttools brotli
-    python3 scripts/subset-fonts.py IBMPlexSansKR-Bold.otf IBMPlexSansSC-Bold.otf
+    python3 scripts/subset-fonts.py IBMPlexSansKR-Bold.otf IBMPlexSansSC-Bold.otf IBMPlexSans-Bold.otf
 
 Source fonts: https://github.com/IBM/plex/tree/master/packages
 Characters a heading uses but the subset lacks fall back to the system sans.
@@ -75,9 +77,11 @@ def rename(font, suffix: str):
         font["CFF "].cff.fontNames = [names[6]]
 
 
-def build(src: str, text: str, out_name: str, suffix: str):
+def build(src: str, text: str, out_name: str, suffix: str, extra: str = None):
     ascii_printable = "".join(chr(c) for c in range(0x20, 0x7F))
-    chars = "".join(sorted(set(text + ascii_printable + "·—–’“”…"))).replace("\n", "")
+    if extra is None:
+        extra = ascii_printable + "·—–’“”…"
+    chars = "".join(sorted(set(text + extra))).replace("\n", "")
     options = subset.Options()
     options.flavor = "woff2"
     options.layout_features = ["kern", "liga", "palt", "vpal"]
@@ -95,12 +99,14 @@ def build(src: str, text: str, out_name: str, suffix: str):
 
 
 def main():
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         sys.exit(__doc__)
-    kr_src, sc_src = sys.argv[1], sys.argv[2]
+    kr_src, sc_src, latin_src = sys.argv[1:4]
     latin_korean, chinese = heading_text()
     build(kr_src, latin_korean, "headings-kr.woff2", "KR")
     build(sc_src, chinese, "headings-sc.woff2", "SC")
+    accented = "".join(c for c in set(latin_korean) if 0xA0 <= ord(c) <= 0x24F)
+    build(latin_src, accented, "headings-latin.woff2", "Latin", extra="")
 
 
 if __name__ == "__main__":
