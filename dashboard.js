@@ -192,6 +192,11 @@
   }
 
   // ---------- repo table ----------
+  function releaseStage(latest) {
+    if (!latest.prerelease) return null;
+    return /-(alpha|beta|rc|qa)(?=[.\d-]|$)/i.exec(latest.tag)?.[1].toLowerCase() || "prerelease";
+  }
+
   function renderRepos(repos) {
     const tbody = document.querySelector("#repo-table tbody");
     // Works first (oldest to newest), this site last.
@@ -199,7 +204,7 @@
     tbody.replaceChildren(...ordered.map((r) => {
       const name = el("td", {}, el("a", { href: r.url, text: r.name }), r.site ? el("span", { class: "pill", text: t("repo.thisSite") }) : null);
       const ver = r.latest
-        ? el("td", {}, el("a", { class: "ver", href: r.latest.url, text: r.latest.tag }), r.latest.prerelease ? el("span", { class: "pill", text: t("repo.beta") }) : null)
+        ? el("td", {}, el("a", { class: "ver", href: r.latest.url, text: r.latest.tag }), r.latest.prerelease ? el("span", { class: "pill", text: t(`repo.${releaseStage(r.latest)}`) }) : null)
         : el("td", { class: "muted", text: "–" });
       return el("tr", {},
         name,

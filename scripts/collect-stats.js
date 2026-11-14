@@ -36,9 +36,13 @@ function weekStartKST(date) {
 
 async function commitsSince(repo, sinceIso) {
   const all = [];
-  for (let page = 1; page <= 3; page++) {
+  for (let page = 1; ; page++) {
     const batch = await gh(`/repos/${ORG}/${repo}/commits?since=${sinceIso}&per_page=100&page=${page}`);
-    for (const c of batch) all.push(c.commit.committer?.date || c.commit.author?.date);
+    for (const c of batch) {
+      // Generated data must never count as development or advance last update.
+      if (/^Update dashboard data(?:\n|$)/.test(c.commit.message)) continue;
+      all.push(c.commit.committer?.date || c.commit.author?.date);
+    }
     if (batch.length < 100) break;
   }
   return all.filter(Boolean);
@@ -124,9 +128,9 @@ async function collect() {
 
     for (const iso of commitDates) {
       const t = new Date(iso);
-      if (t.getTime() >= cutoff30) commits30++;
+      if (r.name !== SITE_REPO && t.getTime() >= cutoff30 && t <= now) commits30++;
       const idx = Math.floor((weekStartKST(t) - firstWeek) / (7 * 864e5));
-      if (idx >= 0 && idx < WEEKS) {
+      if (r.name !== SITE_REPO && t <= now && idx >= 0 && idx < WEEKS) {
         weekly[idx].total++;
         weekly[idx].byRepo[r.name] = (weekly[idx].byRepo[r.name] || 0) + 1;
       }
@@ -140,7 +144,9 @@ async function collect() {
       language: r.language,
       license: r.license?.spdx_id && r.license.spdx_id !== "NOASSERTION" ? r.license.spdx_id : null,
       createdAt: r.created_at,
-      pushedAt: r.pushed_at,
+      pushedAt: r.name === SITE_REPO
+        ? commitDates.reduce((latest, date) => date > latest ? date : latest, r.created_at)
+        : r.pushed_at,
       stars: r.stargazers_count,
       openIssues: r.open_issues_count,
       latest,
@@ -157,7 +163,7 @@ async function collect() {
       works: repos.filter((r) => !r.site).length,
       versions: repos.reduce((n, r) => n + r.versionCount, 0),
       commits30,
-      lastPush: repos.reduce((m, r) => (r.pushedAt > m ? r.pushedAt : m), ""),
+      lastPush: repos.filter((r) => !r.site).reduce((m, r) => (r.pushedAt > m ? r.pushedAt : m), ""),
     },
     weekly,
     repos,
