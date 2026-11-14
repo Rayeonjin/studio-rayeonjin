@@ -674,3 +674,19 @@ main { overflow-x: clip; }
 }
 .shot-link { display: contents; cursor: zoom-in; }
 .shot-link .shot-window { cursor: zoom-in; }
+
+/* App discovery and installation keep the notebook's flat, quiet treatment. */
+.hero-action { margin-top: 24px; }
+.hero-action .btn { border-radius: 6px; }
+.app-foot .links { align-items: center; gap: 12px 18px; }
+.app-foot .links .install-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 8px 16px; border-radius: 6px;
+  background: var(--ink); color: var(--bg); border: 1px solid var(--ink);
+  text-decoration: none; line-height: 1.5;
+}
+.app-foot .links .install-link:hover { background: var(--ink-soft); }
+@media (max-width: 420px) {
+  .app-foot .links { width: 100%; }
+  .app-foot .links .install-link { flex-basis: 100%; }
+}
