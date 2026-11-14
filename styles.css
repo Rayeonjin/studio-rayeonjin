@@ -535,13 +535,13 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 }
 
 /* Repository table: relative time sits under the date; narrower screens drop
-   the language column, and phones also drop stars and badges, so the table
+   the language column, and phones (≤560px) also drop stars and badges, so the table
    fits without sideways scrolling. */
 .repo-table .rel { display: block; font-size: 13px; color: var(--ink-faint); }
 @media (max-width: 960px) {
   .repo-table th:nth-child(4), .repo-table td:nth-child(4) { display: none; }
 }
-@media (max-width: 420px) {
+@media (max-width: 560px) {
   .repo-table th, .repo-table td { padding: 10px 10px; font-size: 14px; white-space: normal; overflow-wrap: anywhere; }
   .repo-table .pill, .repo-table .rel, .repo-table th:nth-child(5), .repo-table td:nth-child(5) { display: none; }
 }
@@ -669,3 +669,32 @@ main { overflow-x: clip; }
    underlines on hover only. */
 .app h4, .section > .app h4 { text-decoration: none; }
 .shelf a:hover strong { text-decoration: underline; text-decoration-color: currentColor; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+/* Repository table, tidied: the name column takes the spare width and the
+   data columns hug their content, so the gaps between them are even. Rows
+   share a baseline on their first line (the date cell has two), versions and dates use
+   the same monospace as the timeline, and only the repo name is bold. */
+.repo-table th, .repo-table td { vertical-align: baseline; }
+.repo-table th:not(:first-child), .repo-table td:not(:first-child) { width: 1%; padding-left: 28px; }
+.repo-table .ver, .repo-table .date { font-family: var(--mono); font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.repo-table a.ver { font-weight: 400; }
+.repo-table .rel { margin-top: 2px; }
+.repo-table .pill { display: inline-block; vertical-align: 1px; }
+/* Narrower: columns size themselves again, and a beta badge may drop under
+   its version instead of pushing the table wider than the card. */
+@media (max-width: 960px) {
+  .repo-table th:not(:first-child), .repo-table td:not(:first-child) { width: auto; padding-left: 14px; }
+  .repo-table td:nth-child(2) { white-space: normal; }
+}
+/* Phones: names and versions break only at their hyphens; words stay whole. */
+@media (max-width: 560px) {
+  .repo-table th:not(:first-child), .repo-table td:not(:first-child) { padding-left: 10px; }
+  .repo-table th, .repo-table td { overflow-wrap: normal; }
+  .repo-table .date { white-space: nowrap; }
+  .repo-table .pill { display: none; }
+  .repo-table .ver, .repo-table .date { font-size: 12.5px; }
+}
+@media (max-width: 360px) {
+  .repo-table th, .repo-table td, .repo-table th:not(:first-child), .repo-table td:not(:first-child) { padding-left: 8px; padding-right: 8px; font-size: 13px; }
+  .repo-table .ver, .repo-table .date { font-size: 11.5px; }
+}
