@@ -229,6 +229,8 @@
     renderRepos(data.repos || []);
     const u = document.getElementById("dash-updated");
     if (u && data.generatedAt) u.textContent = t("dash.updated", { t: relative(data.generatedAt) });
+    // Chinese needs no space after 。 before "updated …"; other languages do.
+    if (u && u.previousSibling && u.previousSibling.nodeType === 3) u.previousSibling.data = lang() === "zh" ? "" : " ";
   }
 
   document.addEventListener("langchange", renderAll);
