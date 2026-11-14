@@ -54,7 +54,9 @@ def heading_text():
         m = re.match(r'\s+"([^"]+)": (["`\'])(.*)\2,?\s*$', line)
         if lang and m and m.group(1) in keys:
             per_lang[lang].append(strip(m.group(3)))
-    return " ".join(korean + per_lang["en"] + per_lang["es"]), " ".join(per_lang["zh"])
+    # 404.html keeps its own four-language strings inline; include all of its text.
+    lost = strip((ROOT / "404.html").read_text(encoding="utf-8"))
+    return " ".join(korean + per_lang["en"] + per_lang["es"] + [lost]), " ".join(per_lang["zh"] + [lost])
 
 
 FAMILY = "Rayeonjin Headings"
