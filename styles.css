@@ -198,7 +198,6 @@ code { font-family: var(--mono); font-size: 0.9em; }
   padding: 3px 9px; border-radius: 999px;
   background: var(--accent-wash); color: var(--accent-ink);
 }
-.tag-quiet { background: var(--bg-soft); color: var(--ink-soft); border: 1px solid var(--line); }
 .meta { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .meta li { font-size: 13px; padding: 4px 10px; border-radius: 8px; background: var(--bg-soft); color: var(--ink-soft); }
 .links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: auto; padding-top: 4px; }
@@ -468,7 +467,6 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 .app-icon { width: 52px; height: 52px; border-radius: 12px; }
 .app h4 .tag { margin-left: 8px; vertical-align: 0.3em; text-decoration: none; }
 .tag { display: inline-block; background: transparent; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; font-size: 12px; font-weight: 600; letter-spacing: 0; }
-.tag-quiet { border-style: dashed; }
 .meta li { background: transparent; padding: 0; color: var(--ink-faint); }
 .meta li + li::before { content: "/ "; color: var(--line); }
 .links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
