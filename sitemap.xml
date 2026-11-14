@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://studio-rayeonjin.vercel.app/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://studio-rayeonjin.vercel.app/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-rayeonjin.vercel.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://studio-rayeonjin.vercel.app/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://studio-rayeonjin.vercel.app/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio-rayeonjin.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://studio-rayeonjin.vercel.app/?lang=ko</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://studio-rayeonjin.vercel.app/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-rayeonjin.vercel.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://studio-rayeonjin.vercel.app/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://studio-rayeonjin.vercel.app/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio-rayeonjin.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://studio-rayeonjin.vercel.app/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://studio-rayeonjin.vercel.app/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-rayeonjin.vercel.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://studio-rayeonjin.vercel.app/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://studio-rayeonjin.vercel.app/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio-rayeonjin.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://studio-rayeonjin.vercel.app/?lang=zh</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://studio-rayeonjin.vercel.app/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-rayeonjin.vercel.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://studio-rayeonjin.vercel.app/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://studio-rayeonjin.vercel.app/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio-rayeonjin.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://studio-rayeonjin.vercel.app/?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://studio-rayeonjin.vercel.app/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-rayeonjin.vercel.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://studio-rayeonjin.vercel.app/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://studio-rayeonjin.vercel.app/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio-rayeonjin.vercel.app/"/>
+  </url>
+</urlset>

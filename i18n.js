@@ -109,6 +109,7 @@
   // Page strings for languages other than Korean.
   const PAGE = {
     en: {
+      "meta.title": "Studio RAYEONJIN · Small, kind software",
       "meta.description": "The small apps from Studio RAYEONJIN: everyday tools built to last, with their source code out in the open.",
       "a11y.home": "Studio RAYEONJIN home",
       "a11y.mainMenu": "Main menu",
@@ -177,6 +178,7 @@
       "footer.fine": "© 2026 Rayeonjin · This site uses no cookies and only collects visit statistics that don’t identify anyone.",
     },
     zh: {
+      "meta.title": "Studio RAYEONJIN · 小而美、有温度的软件",
       "meta.description": "Studio RAYEONJIN 的小应用合集：放在手边、能长久使用的日常工具，源代码全部公开。",
       "a11y.home": "返回 Studio RAYEONJIN 首页",
       "a11y.mainMenu": "主菜单",
@@ -245,6 +247,7 @@
       "footer.fine": "© 2026 Rayeonjin · 本站不使用 Cookie，仅收集无法识别个人身份的访问统计。",
     },
     es: {
+      "meta.title": "Studio RAYEONJIN · Software pequeño y cercano",
       "meta.description": "Las pequeñas apps de Studio RAYEONJIN: herramientas para el día a día, pensadas para durar y con el código fuente a la vista.",
       "a11y.home": "Inicio de Studio RAYEONJIN",
       "a11y.mainMenu": "Menú principal",
@@ -364,7 +367,7 @@
     root.lang = HTML_LANG[lang];
     document.querySelectorAll("[data-i18n]").forEach((n) => {
       n.innerHTML = t(n.dataset.i18n);
-      if (lang === "zh") keepWordsTogether(n);
+      if (lang === "zh" && n.tagName !== "TITLE") keepWordsTogether(n);
     });
     document.querySelectorAll("[data-i18n-attr]").forEach((n) => {
       n.dataset.i18nAttr.split(";").forEach((pair) => {
@@ -372,6 +375,12 @@
         n.setAttribute(attr, t(key));
       });
     });
+    // A ?lang= URL is its own page for search engines; the bare URL stays x-default.
+    const canonical = document.getElementById("canonical");
+    if (canonical) {
+      const hasLang = new URLSearchParams(location.search).has("lang");
+      canonical.href = "https://studio-rayeonjin.vercel.app/" + (hasLang ? `?lang=${lang}` : "");
+    }
     const sel = document.getElementById("lang-select");
     if (sel) sel.value = lang;
     root.classList.remove("i18n-pending");
