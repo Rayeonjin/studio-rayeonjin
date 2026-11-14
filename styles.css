@@ -506,7 +506,8 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 @media (max-width: 420px) {
   .tiles { grid-template-columns: 1fr; gap: 8px; }
   .tile { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 12px; padding: 12px 14px; }
-  .tile-value { font-size: 20px; white-space: nowrap; }
+  .tile-label { white-space: nowrap; }
+  .tile-value { font-size: 20px; text-align: right; }
 }
 @media (max-width: 360px) {
   .lang-picker svg { display: none; }
@@ -541,3 +542,123 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 /* Keyboard focus uses the notebook red so it stands out on the grid (≥ 3:1). */
 :focus-visible { outline-color: var(--note); }
 .lang-picker:focus-within { outline-color: var(--note); }
+
+/* ==========================================================================
+   Layout (2026-11-14): hero app shelf, one template per app, paragraph text,
+   and two flat note touches. Layered over the rules above.
+   ========================================================================== */
+.wrap, .menubar-inner { width: min(1040px, 100% - 32px); }
+
+/* ---------- hero: intro + app shelf ---------- */
+.hero-main {
+  display: grid; grid-template-columns: minmax(0, 1fr) 280px;
+  column-gap: 56px; align-items: start;
+}
+.hero-text .lede { max-width: 32em; }
+.shelf {
+  list-style: none; margin: 10px 0 0; padding: 0;
+  border-top: 1px solid var(--line);
+}
+.shelf li { border-bottom: 1px solid var(--line); }
+.shelf a {
+  display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: center;
+  padding: 14px 4px; text-decoration: none; color: var(--ink);
+}
+.shelf img { width: 40px; height: 40px; border-radius: 10px; }
+.shelf a > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.shelf strong { font-family: var(--heading); font-size: 16px; font-weight: 700; }
+.shelf em { font-style: normal; font-size: 13.5px; color: var(--ink-faint); }
+
+/* ---------- works: one template per app ---------- */
+.section > .app {
+  display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: 24px;
+  padding: 32px 0; margin: 0;
+  border-top: 1px solid var(--line); border-radius: 0; background: transparent; box-shadow: none;
+}
+.app > .app-icon { width: 56px; height: 56px; border-radius: 13px; }
+.app-main { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.app-main > p { max-width: 40em; color: var(--ink-soft); }
+.app-main .app-en { margin-top: -6px; }
+.app-main .app-media { margin: 4px 0 2px; max-width: 520px; }
+.app-foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 10px 24px; margin-top: 6px;
+}
+.app-foot .links { margin: 0; padding: 0; }
+.section > .app-next {
+  border-top: 1px dashed var(--line); padding: 28px 0 0 80px; background: transparent;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+/* ---------- paragraphs instead of one sentence per line ---------- */
+.app-main p br.w, .faq p br.w { display: none; }
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 960px) {
+  .hero-main { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+  .shelf { max-width: 420px; margin-top: 0; }
+}
+@media (max-width: 720px) {
+  .section > .app { grid-template-columns: 44px minmax(0, 1fr); column-gap: 16px; padding: 26px 0; }
+  .app > .app-icon { width: 44px; height: 44px; border-radius: 11px; }
+  .section > .app-next { padding-left: 0; }
+  .app-foot { justify-content: flex-start; }
+}
+
+/* ---------- polish ---------- */
+/* Same edge on every icon, so a white icon weighs the same as a coloured one. */
+.shelf img, .app > .app-icon { box-shadow: 0 0 0 1px var(--line); }
+/* Shelf rows read as links: a quiet arrow and a tint on hover/focus. */
+.shelf a { grid-template-columns: 40px minmax(0, 1fr) 12px; border-radius: 6px; transition: background-color .15s ease; }
+.shelf a::after {
+  content: ""; width: 7px; height: 7px; justify-self: end;
+  border-right: 1.5px solid var(--ink-faint); border-top: 1.5px solid var(--ink-faint);
+  transform: rotate(45deg);
+}
+.shelf a:hover, .shelf a:focus-visible { background: color-mix(in srgb, var(--card) 70%, transparent); }
+.shelf a:hover::after { border-color: var(--ink); }
+/* Jump targets land below the sticky bar. */
+.app[id] { scroll-margin-top: 72px; }
+@media (prefers-reduced-motion: reduce) { .shelf a { transition: none; } }
+
+/* ---------- note touches, kept flat: no tilt, no drop shadows ---------- */
+:root { --tape: #efe3b4; --sticky: #fdf7d8; --sticky-line: #ece2b2; --sticky-ink: #3b3420; }
+:root[data-theme="dark"] { --tape: #5a5232; --sticky: #29271b; --sticky-line: #48422a; --sticky-ink: #efe8cf; }
+
+/* 1. The Catoshi screenshot: a plain framed picture. */
+.app-main .app-media {
+  position: relative; overflow: visible;
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+  padding: 0; box-shadow: none; transform: none;
+  margin: 14px 0 8px;
+}
+.app-main .shot-bar { border-radius: 5px 5px 0 0; overflow: hidden; }
+.app-main .shot-more > summary { border-top: 1px solid var(--line); padding: 9px 14px; }
+.app-main .shot-stage { border-radius: 0 0 5px 5px; }
+
+/* 2. "More on the way": a flat note card with a tape tab. */
+.section > .app-next {
+  position: relative; width: min(440px, 100%);
+  margin: 36px 0 8px 80px; padding: 24px 24px 20px;
+  background: var(--sticky); color: var(--sticky-ink);
+  border: 1px solid var(--sticky-line); border-radius: 6px;
+  box-shadow: none; transform: none;
+}
+.section > .app-next::before {
+  content: ""; position: absolute; top: -8px; left: 50%; width: 64px; height: 16px;
+  margin-left: -32px; background: var(--tape); border-radius: 1px;
+}
+.section > .app-next h4 { color: var(--sticky-ink); font-size: 17px; text-decoration: none; }
+.section > .app-next p { color: var(--sticky-ink); opacity: 0.86; }
+.section > .app-next .links a { color: var(--sticky-ink); text-decoration-color: currentColor; }
+@media (max-width: 720px) {
+  .section > .app-next { margin-left: 0; }
+}
+.section > .app-next p br.w { display: none; }
+/* Never let decorative pieces widen the page. */
+main { overflow-x: clip; }
+
+/* Restraint: no highlighter. App names rely on weight alone; the shelf
+   underlines on hover only. */
+.app h4, .section > .app h4 { text-decoration: none; }
+.shelf a:hover strong { text-decoration: underline; text-decoration-color: currentColor; text-decoration-thickness: 1px; text-underline-offset: 4px; }
