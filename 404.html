@@ -15,11 +15,12 @@
     .lost .hero-links a::after { content: none; }
   </style>
   <script>
-    // Saved theme, then the language: saved choice > browser > English (same order as the home page).
+    // Saved theme, then the language: ?lang= > saved choice > browser > English (same order as the home page).
     (function () {
       var root = document.documentElement, langs = ["ko", "en", "zh", "es"], lang = null;
       try { if (localStorage.getItem("theme") === "dark") { root.dataset.theme = "dark"; document.querySelector('meta[name="theme-color"]').content = "#141b25"; } } catch (e) {}
-      try { var s = localStorage.getItem("lang"); if (langs.indexOf(s) >= 0) lang = s; } catch (e) {}
+      try { var q = new URLSearchParams(location.search).get("lang"); if (langs.indexOf(q) >= 0) lang = q; } catch (e) {}
+      if (!lang) try { var s = localStorage.getItem("lang"); if (langs.indexOf(s) >= 0) lang = s; } catch (e) {}
       if (!lang) {
         var prefs = navigator.languages || [navigator.language || ""];
         for (var i = 0; i < prefs.length && !lang; i++) { var p = String(prefs[i]).toLowerCase().slice(0, 2); if (langs.indexOf(p) >= 0) lang = p; }
@@ -55,7 +56,7 @@
         <img src="/assets/mark.svg" alt="" width="20" height="20">
         <span>Studio RAYEONJIN</span>
       </div>
-      <nav class="footer-links" aria-label="Links">
+      <nav class="footer-links" aria-label="외부 링크" id="t-links">
         <a href="https://github.com/Rayeonjin">GitHub</a>
         <a href="https://t.me/Rayeonjin">Telegram</a>
       </nav>
@@ -65,14 +66,15 @@
   <script>
     (function () {
       var T = {
-        en: ["This page doesn’t exist.", "The address may have changed, or it may have been mistyped. Try again from the home page.", "Back to home"],
-        zh: ["这个页面不存在。", "地址可能已经变更，或者输入有误。请回到首页重新查找。", "返回首页"],
-        es: ["Esta página no existe.", "Puede que la dirección haya cambiado o esté mal escrita. Vuelve a buscarla desde la página de inicio.", "Volver al inicio"]
+        en: ["This page doesn’t exist.", "The address may have changed, or it may have been mistyped. Try again from the home page.", "Back to home", "External links"],
+        zh: ["这个页面不存在。", "地址可能已经变更，或者输入有误。请回到首页重新查找。", "返回首页", "外部链接"],
+        es: ["Esta página no existe.", "Puede que la dirección haya cambiado o esté mal escrita. Vuelve a buscarla desde la página de inicio.", "Volver al inicio", "Enlaces externos"]
       }[window.__lang];
       if (!T) return;
       document.getElementById("t-title").textContent = T[0];
       document.getElementById("t-body").textContent = T[1];
       document.getElementById("t-home").textContent = T[2];
+      document.getElementById("t-links").setAttribute("aria-label", T[3]);
     })();
   </script>
 </body>
