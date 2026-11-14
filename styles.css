@@ -551,30 +551,10 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 .lang-picker:focus-within { outline-color: var(--note); }
 
 /* ==========================================================================
-   Layout (2026-11-14): hero app shelf, one template per app, paragraph text,
+   Layout (2026-11-14): one template per app, paragraph text,
    and two flat note touches. Layered over the rules above.
    ========================================================================== */
 .wrap, .menubar-inner { width: min(1040px, 100% - 32px); }
-
-/* ---------- hero: intro + app shelf ---------- */
-.hero-main {
-  display: grid; grid-template-columns: minmax(0, 1fr) 280px;
-  column-gap: 56px; align-items: start;
-}
-.hero-text .lede { max-width: 32em; }
-.shelf {
-  list-style: none; margin: 10px 0 0; padding: 0;
-  border-top: 1px solid var(--line);
-}
-.shelf li { border-bottom: 1px solid var(--line); }
-.shelf a {
-  display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: center;
-  padding: 14px 4px; text-decoration: none; color: var(--ink);
-}
-.shelf img { width: 40px; height: 40px; border-radius: 10px; }
-.shelf a > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.shelf strong { font-family: var(--heading); font-size: 16px; font-weight: 700; }
-.shelf em { font-style: normal; font-size: 13.5px; color: var(--ink-faint); }
 
 /* ---------- works: one template per app ---------- */
 .section > .app {
@@ -601,10 +581,6 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 .app-main p br.w, .faq p br.w { display: none; }
 
 /* ---------- smaller screens ---------- */
-@media (max-width: 960px) {
-  .hero-main { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
-  .shelf { max-width: 420px; margin-top: 0; }
-}
 @media (max-width: 720px) {
   .section > .app { grid-template-columns: 44px minmax(0, 1fr); column-gap: 16px; padding: 26px 0; }
   .app > .app-icon { width: 44px; height: 44px; border-radius: 11px; }
@@ -614,19 +590,9 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 
 /* ---------- polish ---------- */
 /* Same edge on every icon, so a white icon weighs the same as a coloured one. */
-.shelf img, .app > .app-icon { box-shadow: 0 0 0 1px var(--line); }
-/* Shelf rows read as links: a quiet arrow and a tint on hover/focus. */
-.shelf a { grid-template-columns: 40px minmax(0, 1fr) 12px; border-radius: 6px; transition: background-color .15s ease; }
-.shelf a::after {
-  content: ""; width: 7px; height: 7px; justify-self: end;
-  border-right: 1.5px solid var(--ink-faint); border-top: 1.5px solid var(--ink-faint);
-  transform: rotate(45deg);
-}
-.shelf a:hover, .shelf a:focus-visible { background: color-mix(in srgb, var(--card) 70%, transparent); }
-.shelf a:hover::after { border-color: var(--ink); }
+.app > .app-icon { box-shadow: 0 0 0 1px var(--line); }
 /* Jump targets land below the sticky bar. */
 .app[id] { scroll-margin-top: 72px; }
-@media (prefers-reduced-motion: reduce) { .shelf a { transition: none; } }
 
 /* ---------- note touches, kept flat: no tilt, no drop shadows ---------- */
 :root { --tape: #efe3b4; --sticky: #fdf7d8; --sticky-line: #ece2b2; --sticky-ink: #3b3420; }
@@ -665,10 +631,8 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 /* Never let decorative pieces widen the page. */
 main { overflow-x: clip; }
 
-/* Restraint: no highlighter. App names rely on weight alone; the shelf
-   underlines on hover only. */
+/* Restraint: no highlighter. App names rely on weight alone. */
 .app h4, .section > .app h4 { text-decoration: none; }
-.shelf a:hover strong { text-decoration: underline; text-decoration-color: currentColor; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 
 /* Repository table, tidied: the name column takes the spare width and the
    data columns hug their content, so the gaps between them are even. Rows
