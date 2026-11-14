@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Studio RAYEONJIN</title>
+  <title data-i18n="meta.title">Studio RAYEONJIN · 작고 다정한 소프트웨어</title>
   <meta name="description" data-i18n-attr="content:meta.description" content="Studio RAYEONJIN에서 만든 작은 앱들을 모아 둔 곳입니다. 일상 가까이에 두고 오래 쓸 수 있는 도구를 만들고, 소스를 공개합니다.">
   <meta property="og:title" content="Studio RAYEONJIN">
   <meta property="og:description" content="작고 다정한 소프트웨어를 만드는 스튜디오. Small, kind software.">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Studio RAYEONJIN">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:locale:alternate" content="es_ES">
   <meta property="og:url" content="https://studio-rayeonjin.vercel.app/">
   <meta property="og:image" content="https://studio-rayeonjin.vercel.app/assets/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Studio RAYEONJIN, 작고 다정한 소프트웨어를 만듭니다.">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://studio-rayeonjin.vercel.app/">
+  <link rel="canonical" id="canonical" href="https://studio-rayeonjin.vercel.app/">
   <link rel="alternate" hreflang="ko" href="https://studio-rayeonjin.vercel.app/?lang=ko">
   <link rel="alternate" hreflang="en" href="https://studio-rayeonjin.vercel.app/?lang=en">
   <link rel="alternate" hreflang="zh-Hans" href="https://studio-rayeonjin.vercel.app/?lang=zh">
@@ -42,6 +47,29 @@
         setTimeout(function () { root.classList.remove("i18n-pending"); }, 2500);
       }
     })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://studio-rayeonjin.vercel.app/#studio",
+        "name": "Studio RAYEONJIN",
+        "url": "https://studio-rayeonjin.vercel.app/",
+        "logo": "https://studio-rayeonjin.vercel.app/assets/apple-touch-icon.png",
+        "sameAs": ["https://github.com/Rayeonjin", "https://t.me/Rayeonjin"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://studio-rayeonjin.vercel.app/#site",
+        "name": "Studio RAYEONJIN",
+        "url": "https://studio-rayeonjin.vercel.app/",
+        "inLanguage": ["ko", "en", "zh-Hans", "es"],
+        "publisher": { "@id": "https://studio-rayeonjin.vercel.app/#studio" }
+      }
+    ]
+  }
   </script>
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
