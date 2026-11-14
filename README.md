@@ -24,7 +24,9 @@ python3 -m http.server 4321 --directory .
 - `feed.xml`은 같은 데이터로 만든 RSS 피드입니다.
 - `data/stats.json`을 페이지가 읽어 연혁, 요약 수치, 주간 커밋 차트, 저장소 표를 그립니다.
 - `.github/workflows/stats.yml`이 3시간마다(그리고 main에 push할 때) `scripts/build-stats.js`를 실행해 Rayeonjin 조직의 공개 저장소 기록을 모읍니다. 내용이 바뀐 경우에만 커밋하고, 그 커밋으로 Vercel이 다시 배포합니다.
-- 커밋 작성자 정보는 수집하지 않습니다.
+- 앱 커밋 차트·최근 30일 커밋·앱 마지막 업데이트는 홈페이지 저장소를 제외합니다. `Update dashboard data` 자동 커밋은 집계하지 않으며, 홈페이지 행의 업데이트 시각에도 반영하지 않습니다.
+- 사전 공개 버전은 태그에 따라 Alpha·Beta·RC·QA를 구분합니다. 단계가 없는 prerelease는 사전 공개로 표시합니다.
+- 커밋 작성자 정보는 저장하지 않습니다.
 - 로컬에서 직접 갱신하려면: `GITHUB_TOKEN=$(gh auth token) node scripts/build-stats.js`
 
 ## 제목 글꼴

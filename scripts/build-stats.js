@@ -19,7 +19,7 @@ function feedTitle(e) {
 }
 
 function kindLabel(e) {
-  if (e.kind === "release") return e.prerelease ? "베타 릴리스 · Beta release" : "릴리스 · Release";
+  if (e.kind === "release") return e.prerelease ? "사전 공개 릴리스 · Prerelease" : "릴리스 · Release";
   if (e.kind === "tag") return "버전 태그 · Version tag";
   return "공개 · Launch";
 }
