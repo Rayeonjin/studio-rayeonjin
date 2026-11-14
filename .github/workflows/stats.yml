@@ -23,6 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check dashboard collection
+        run: node --test tests/*.test.js
       - name: Collect GitHub activity
         run: node scripts/build-stats.js
         env:
