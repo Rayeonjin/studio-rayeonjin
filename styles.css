@@ -664,3 +664,13 @@ main { overflow-x: clip; }
 /* Why each app exists: one line before the description, in full ink so it
    reads first; the description below stays in the softer tone. */
 .app-main > p.app-why { color: var(--ink); }
+
+/* MemoWeaver: a window shot that opens on demand, framed like Catoshi's panel. */
+.app-media > .shot-more:first-child > summary { border-top: 0; }
+.app-main .app-media > .shot-more:first-child[open] > summary { border-bottom: 1px solid var(--line); }
+.shot-window {
+  width: 92%; margin: 22px 0; border-radius: 10px;
+  box-shadow: 0 18px 40px -16px rgba(40, 20, 60, .45);
+}
+.shot-link { display: contents; cursor: zoom-in; }
+.shot-link .shot-window { cursor: zoom-in; }
