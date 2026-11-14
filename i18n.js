@@ -174,7 +174,7 @@
       "faq.a3": `Absolutely. Fork it, change it, or use it as the starting point for something new.${BR}Uncomew (MIT) and MemoWeaver (Apache-2.0) can be used commercially too.${BR}Just keep the copyright and license notices.${BR}Catoshi can be modified and shared for non-commercial personal use only.${BR}If you build something, let us know on ${TG}. We’d love to see it.`,
       "faq.q2": "Where can I send feedback or report a problem?",
       "faq.a2": `Reach out through the project’s GitHub repository or on ${TG}.${BR}Including your version, setup, what happened and any error messages helps a lot.${BR}Replies may take a while, so thanks for your patience.`,
-      "footer.fine": "© 2026 Rayeonjin · This site uses no cookies or analytics.",
+      "footer.fine": "© 2026 Rayeonjin · This site uses no cookies and only collects visit statistics that don’t identify anyone.",
     },
     zh: {
       "meta.description": "Studio RAYEONJIN 的小应用合集：放在手边、能长久使用的日常工具，源代码全部公开。",
@@ -242,7 +242,7 @@
       "faq.a3": `当然可以。欢迎 fork 后自行修改，或者拿来当作新项目的起点。${BR}Uncomew（MIT）和 MemoWeaver（Apache-2.0）也可用于商业用途，${BR}只需保留版权和许可声明。${BR}Catoshi 仅可在非商业的个人使用范围内修改和分享。${BR}如果你做出了什么，欢迎在 ${TG} 上告诉我们，很期待看到。`,
       "faq.q2": "有建议或遇到问题，该怎么反馈？",
       "faq.a2": `请通过对应项目的 GitHub 仓库或 ${TG} 告诉我们。${BR}附上所用版本、运行环境、具体现象和错误信息，会很有帮助。${BR}回复可能不够及时，<span class="nw">还请见谅</span>。`,
-      "footer.fine": "© 2026 Rayeonjin · 本站不使用 Cookie，也不使用任何统计分析工具。",
+      "footer.fine": "© 2026 Rayeonjin · 本站不使用 Cookie，仅收集无法识别个人身份的访问统计。",
     },
     es: {
       "meta.description": "Las pequeñas apps de Studio RAYEONJIN: herramientas para el día a día, pensadas para durar y con el código fuente a la vista.",
@@ -310,7 +310,7 @@
       "faq.a3": `Claro que sí. Haz un fork, modifícalo o úsalo como punto de partida para algo nuevo.${BR}Uncomew (MIT) y MemoWeaver (Apache-2.0) también admiten uso comercial.${BR}Solo mantén los avisos de copyright y licencia.${BR}Catoshi solo puede modificarse y compartirse para uso personal no comercial.${BR}Si construyes algo, cuéntanoslo por ${TG}. Nos encantará verlo.`,
       "faq.q2": "¿Dónde puedo enviar comentarios o informar de un problema?",
       "faq.a2": `Escríbenos en el repositorio de GitHub del proyecto o por ${TG}.${BR}Ayuda mucho que incluyas la versión, tu entorno, lo que ocurrió y los mensajes de error.${BR}Puede que tardemos en responder; gracias por <span class="nw">tu paciencia</span>.`,
-      "footer.fine": "© 2026 Rayeonjin · Este sitio no usa cookies ni herramientas de analítica.",
+      "footer.fine": "© 2026 Rayeonjin · Este sitio no usa cookies y solo recopila estadísticas de visitas que <span class=\"nw\">no identifican a nadie</span>.",
     },
   };
 
