@@ -1,6 +1,6 @@
 # Studio RAYEONJIN
 
-Studio RAYEONJIN 소개 페이지. 빌드 도구 없는 정적 사이트(HTML·CSS·JS)이며 외부 폰트·CDN·분석 도구를 쓰지 않습니다.
+Studio RAYEONJIN 소개 페이지. 빌드 도구 없는 정적 사이트(HTML·CSS·JS)이며 외부 폰트·CDN을 쓰지 않습니다. 방문 통계는 쿠키를 쓰지 않는 Vercel Web Analytics만 사용합니다(Vercel 프로젝트의 Analytics 탭에서 켜야 수집됩니다).
 
 ## 로컬 미리보기
 
