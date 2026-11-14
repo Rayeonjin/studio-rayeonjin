@@ -199,12 +199,12 @@
     tbody.replaceChildren(...ordered.map((r) => {
       const name = el("td", {}, el("a", { href: r.url, text: r.name }), r.site ? el("span", { class: "pill", text: t("repo.thisSite") }) : null);
       const ver = r.latest
-        ? el("td", {}, el("a", { href: r.latest.url, text: r.latest.tag }), r.latest.prerelease ? el("span", { class: "pill", text: t("repo.beta") }) : null)
+        ? el("td", {}, el("a", { class: "ver", href: r.latest.url, text: r.latest.tag }), r.latest.prerelease ? el("span", { class: "pill", text: t("repo.beta") }) : null)
         : el("td", { class: "muted", text: "–" });
       return el("tr", {},
         name,
         ver,
-        el("td", {}, fullDate(r.pushedAt), el("span", { class: "rel", text: relative(r.pushedAt) })),
+        el("td", {}, el("span", { class: "date", text: fullDate(r.pushedAt) }), el("span", { class: "rel", text: relative(r.pushedAt) })),
         el("td", { text: r.language || "–" }),
         el("td", { class: "num-col", text: String(r.stars) }));
     }));
