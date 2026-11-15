@@ -219,16 +219,22 @@
   let data = null;
   let failed = false;
 
+  const hasDashboard = () => !!document.getElementById("dashboard");
+
   function renderAll() {
     if (failed) {
       const msg = t("error.load");
       document.getElementById("timeline").replaceChildren(el("li", { class: "timeline-empty", text: msg }));
-      document.querySelector("#repo-table tbody").replaceChildren(el("tr", {}, el("td", { colspan: "5", class: "muted", text: msg })));
-      document.getElementById("chart").replaceChildren(el("p", { class: "muted", text: msg }));
+      if (hasDashboard()) {
+        document.querySelector("#repo-table tbody").replaceChildren(el("tr", {}, el("td", { colspan: "5", class: "muted", text: msg })));
+        document.getElementById("chart").replaceChildren(el("p", { class: "muted", text: msg }));
+      }
       return;
     }
     if (!data) return;
     renderTimeline(data.timeline || []);
+    // The dashboard section may be commented out in index.html; the history still renders.
+    if (!hasDashboard()) return;
     renderTiles(data.totals);
     renderChart(data.weekly || []);
     renderRepos(data.repos || []);
@@ -245,6 +251,7 @@
     .then((d) => {
       data = d;
       renderAll();
+      if (!hasDashboard()) return;
       // Redraw at the new width so bars keep their pixel size.
       let raf = 0, lastW = 0;
       new ResizeObserver((entries) => {
