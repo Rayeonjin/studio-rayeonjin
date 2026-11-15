@@ -6,7 +6,15 @@
     <atom:link href="https://studio-rayeonjin.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Studio RAYEONJIN의 새 작업과 릴리스 소식 · Releases and launches from Studio RAYEONJIN</description>
     <language>ko</language>
-    <lastBuildDate>Sun, 15 Nov 2026 16:35:14 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 16:38:53 GMT</lastBuildDate>
+    <item>
+      <title>MemoWeaver v0.9.70-qa</title>
+      <link>https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.70-qa</link>
+      <guid isPermaLink="false">MemoWeaver:tag:v0.9.70-qa</guid>
+      <pubDate>Sun, 15 Nov 2026 16:38:53 GMT</pubDate>
+      <category>MemoWeaver</category>
+      <description>MemoWeaver · 버전 태그 · Version tag</description>
+    </item>
     <item>
       <title>Catoshi v2.16.17 — 시장 지표 계산·해석 보완</title>
       <link>https://github.com/Rayeonjin/Catoshi/releases/tag/v2.16.17</link>
@@ -76,14 +84,6 @@
       <link>https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.66-qa</link>
       <guid isPermaLink="false">MemoWeaver:tag:v0.9.66-qa</guid>
       <pubDate>Sun, 08 Nov 2026 03:51:25 GMT</pubDate>
-      <category>MemoWeaver</category>
-      <description>MemoWeaver · 버전 태그 · Version tag</description>
-    </item>
-    <item>
-      <title>MemoWeaver v0.9.65-qa</title>
-      <link>https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.65-qa</link>
-      <guid isPermaLink="false">MemoWeaver:tag:v0.9.65-qa</guid>
-      <pubDate>Thu, 05 Nov 2026 14:30:38 GMT</pubDate>
       <category>MemoWeaver</category>
       <description>MemoWeaver · 버전 태그 · Version tag</description>
     </item>
