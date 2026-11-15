@@ -1,6 +1,6 @@
 {
   "org": "Rayeonjin",
-  "generatedAt": "2026-11-15T12:44:12.261Z",
+  "generatedAt": "2026-11-15T12:45:45.333Z",
   "totals": {
     "works": 3,
     "versions": 17,
@@ -101,7 +101,7 @@
       "latest": {
         "tag": "v2.16.15",
         "date": "2026-11-08T15:41:35Z",
-        "prerelease": true,
+        "prerelease": false,
         "url": "https://github.com/Rayeonjin/Catoshi/releases/tag/v2.16.15"
       },
       "versionCount": 11
@@ -196,9 +196,9 @@
       "date": "2026-11-08T15:41:35Z",
       "repo": "Catoshi",
       "kind": "release",
-      "title": "Catoshi v2.16.15 — 갱신·리소스 사용 개선 (베타)",
+      "title": "Catoshi v2.16.15 — 갱신·리소스 사용 개선",
       "tag": "v2.16.15",
-      "prerelease": true,
+      "prerelease": false,
       "url": "https://github.com/Rayeonjin/Catoshi/releases/tag/v2.16.15"
     },
     {
