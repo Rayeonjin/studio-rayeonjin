@@ -6,7 +6,15 @@
     <atom:link href="https://studio-rayeonjin.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Studio RAYEONJIN의 새 작업과 릴리스 소식 · Releases and launches from Studio RAYEONJIN</description>
     <language>ko</language>
-    <lastBuildDate>Sat, 14 Nov 2026 15:01:17 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 13:15:15 GMT</lastBuildDate>
+    <item>
+      <title>MemoWeaver v0.9.69-qa</title>
+      <link>https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.69-qa</link>
+      <guid isPermaLink="false">MemoWeaver:tag:v0.9.69-qa</guid>
+      <pubDate>Sun, 15 Nov 2026 13:15:15 GMT</pubDate>
+      <category>MemoWeaver</category>
+      <description>MemoWeaver · 버전 태그 · Version tag</description>
+    </item>
     <item>
       <title>MemoWeaver v0.9.68-qa</title>
       <link>https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.68-qa</link>
@@ -40,7 +48,7 @@
       <description>studio-rayeonjin · 공개 · Launch</description>
     </item>
     <item>
-      <title>Catoshi v2.16.15 — 갱신·리소스 사용 개선</title>
+      <title>Catoshi v2.16.15 — 정식 출시 · 갱신·리소스 사용 개선</title>
       <link>https://github.com/Rayeonjin/Catoshi/releases/tag/v2.16.15</link>
       <guid isPermaLink="false">Catoshi:release:v2.16.15</guid>
       <pubDate>Sun, 08 Nov 2026 15:41:35 GMT</pubDate>
@@ -70,14 +78,6 @@
       <pubDate>Tue, 03 Nov 2026 12:43:24 GMT</pubDate>
       <category>Catoshi</category>
       <description>Catoshi · 사전 공개 릴리스 · Prerelease</description>
-    </item>
-    <item>
-      <title>MemoWeaver v0.9.64-qa</title>
-      <link>https://github.com/Rayeonjin/MemoWeaver/tree/v0.9.64-qa</link>
-      <guid isPermaLink="false">MemoWeaver:tag:v0.9.64-qa</guid>
-      <pubDate>Thu, 29 Oct 2026 13:46:38 GMT</pubDate>
-      <category>MemoWeaver</category>
-      <description>MemoWeaver · 버전 태그 · Version tag</description>
     </item>
     <item>
       <title>MemoWeaver 소스 공개</title>
