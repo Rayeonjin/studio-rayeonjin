@@ -94,9 +94,8 @@ code { font-family: var(--mono); font-size: 0.9em; }
 }
 .brand { white-space: nowrap; flex: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
 .menu { display: flex; gap: 22px; }
-.menu a, .menu-gh { text-decoration: none; color: var(--ink-soft); }
-.menu a:hover, .menu-gh:hover { color: var(--ink); }
-.menu-gh { font-weight: 600; }
+.menu a { text-decoration: none; color: var(--ink-soft); }
+.menu a:hover { color: var(--ink); }
 .lang-picker {
   margin-left: auto; flex: none; position: relative;
   display: inline-flex; align-items: center; gap: 6px;
@@ -310,7 +309,6 @@ code { font-family: var(--mono); font-size: 0.9em; }
 }
 @media (max-width: 720px) {
   .menubar-inner { flex-wrap: wrap; height: auto; padding-top: 8px; gap: 8px 10px; }
-  .menu-gh { display: none; }
   .menu {
     order: 3; width: 100%; gap: 18px; white-space: nowrap; overflow-x: auto; scrollbar-width: none;
     padding: 2px 0 9px; margin-right: -16px; padding-right: 16px;
@@ -520,10 +518,7 @@ h1, h2, h4 { font-family: var(--heading); font-weight: 700; letter-spacing: -0.0
 }
 
 /* Tablets (721–960px): a narrower margin column so entries, tiles and the
-   repository table have room; the GitHub link stays in the hero and footer. */
-@media (max-width: 960px) {
-  .menu-gh { display: none; }
-}
+   repository table have room. */
 @media (min-width: 721px) and (max-width: 960px) {
   .hero, .section { grid-template-columns: 112px minmax(0, 1fr); column-gap: 24px; }
   .hero::before, .section::before { left: 124px; }
