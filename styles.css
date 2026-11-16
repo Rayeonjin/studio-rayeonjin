@@ -149,6 +149,8 @@ code { font-family: var(--mono); font-size: 0.9em; }
 .section-tight { padding-top: 0; }
 .about-lede { max-width: 40em; font-size: 17px; color: var(--ink-soft); margin-bottom: 36px; display: flex; flex-direction: column; gap: 12px; }
 .about-lede a { color: var(--accent-ink); font-weight: 600; text-underline-offset: 4px; }
+/* The reason the source is public is the studio's core message; set it apart from the rest. */
+.about-lede .about-why { color: var(--ink); padding-left: 16px; border-left: 3px solid var(--accent); }
 .platform {
   font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
   color: var(--ink-faint);
