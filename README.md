@@ -47,6 +47,6 @@ python3 -m http.server 4321 --directory .
 ## 방명록 (Supabase)
 
 - 하단의 "방명록" 링크(또는 `#guestbook` 주소)로 여는 팝업입니다. Edge Function `guestbook`이 목록(GET)과 새 글(POST)을 처리하고, `guestbook.js`가 화면을 맡습니다.
-- 새 글은 `public.guestbook` 테이블에 `status = 'pending'`으로 쌓이고, Telegram 채널로 알림이 갑니다. 사이트에 보이게 하려면 Supabase 대시보드 Table Editor에서 그 글의 `status`를 `approved`로 바꿉니다. 숨기려면 `hidden`으로 바꿉니다.
+- 새 글은 `public.guestbook` 테이블에 `status = 'approved'`로 쌓여 바로 보이고, Telegram 채널로 알림이 갑니다. 내리려면 Supabase 대시보드 Table Editor에서 그 글의 `status`를 `hidden`으로 바꿉니다.
 - 링크가 들어간 글은 거절하고, 숨은 입력란·작성 시간·시간당 30건 제한으로 스팸을 거릅니다. RLS를 켜고 정책을 두지 않아 공개 키로는 테이블을 읽거나 쓸 수 없습니다.
 - 배포: `supabase db push --remote`, `supabase functions deploy guestbook --use-api`.

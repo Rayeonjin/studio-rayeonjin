@@ -1,6 +1,6 @@
 // Guestbook for the studio site.
 //   GET  -> the latest approved entries (nickname, message, date only)
-//   POST -> stores a new entry as "pending" and tells the Telegram channel
+//   POST -> stores a new entry (shown right away) and tells the Telegram channel
 //
 // Deployed with --no-verify-jwt: the site calls it without a key, so this
 // function does its own validation, honeypot check and simple flood limit.
@@ -62,13 +62,13 @@ function clean(value: unknown): string {
 async function notify(row: { id: number; nickname: string; message: string; lang: string | null }) {
   if (!TG_TOKEN || !TG_CHAT) return false;
   const text = [
-    `📖 새 방명록 #${row.id} (승인 대기)`,
+    `📖 새 방명록 #${row.id} (바로 표시됨)`,
     `닉네임: ${row.nickname}`,
     `언어: ${row.lang ?? "-"}`,
     "",
     row.message,
     "",
-    "표시하려면 Supabase의 guestbook 표에서 이 글의 status를 approved로 바꿔 주세요.",
+    "내리려면 Supabase의 guestbook 표에서 이 글의 status를 hidden으로 바꿔 주세요.",
   ].join("\n");
   const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
     method: "POST",
@@ -91,7 +91,7 @@ Deno.serve(async (req) => {
       console.error("list failed", res.status, await res.text());
       return reply(500, { error: "load" }, origin);
     }
-    return reply(200, { entries: await res.json() }, origin, { "Cache-Control": "public, max-age=30" });
+    return reply(200, { entries: await res.json() }, origin, { "Cache-Control": "no-store" });
   }
 
   if (req.method !== "POST") return reply(405, { error: "method" }, origin);
@@ -132,7 +132,7 @@ Deno.serve(async (req) => {
   const inserted = await rest("guestbook", {
     method: "POST",
     headers: { Prefer: "return=representation" },
-    body: JSON.stringify(row),
+    body: JSON.stringify({ ...row, status: "approved" }),
   });
   if (!inserted.ok) {
     console.error("insert failed", inserted.status, await inserted.text());

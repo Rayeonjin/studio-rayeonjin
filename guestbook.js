@@ -1,6 +1,6 @@
 // Guestbook: a dialog opened from the footer link (or a #guestbook URL).
 // Entries come from, and are posted to, the Supabase Edge Function in
-// supabase/functions/guestbook. New entries wait for approval before they show.
+// supabase/functions/guestbook. New entries show up right away.
 (() => {
   const ENDPOINT = "https://ggnvczlkfekdcjlafvup.supabase.co/functions/v1/guestbook";
   const dialog = document.getElementById("guestbook-dialog");
@@ -113,6 +113,7 @@
       if (res.ok) {
         form.reset();
         show("guestbook.sent", "ok");
+        load();
       } else if (res.status === 422) {
         const body = await res.json().catch(() => ({}));
         show(body.error === "links" ? "guestbook.links" : "guestbook.invalid", "error");
