@@ -325,6 +325,7 @@
       <nav class="footer-links" data-i18n-attr="aria-label:a11y.externalLinks" aria-label="외부 링크">
         <a href="https://github.com/Rayeonjin">GitHub</a>
         <a href="https://t.me/Rayeonjin">Telegram</a>
+        <a href="#guestbook" id="guestbook-open" role="button" aria-haspopup="dialog" data-i18n="guestbook.open">방명록</a>
         <a href="#coffee" id="coffee-open" role="button" aria-haspopup="dialog" data-i18n="coffee.open">커피챗</a>
         <a href="/feed.xml">RSS</a>
       </nav>
@@ -369,12 +370,43 @@
     </form>
   </dialog>
 
+  <dialog class="coffee-dialog guestbook-dialog" id="guestbook-dialog" aria-labelledby="guestbook-title">
+    <div class="coffee-head">
+      <h2 id="guestbook-title" data-i18n="guestbook.title">방명록</h2>
+      <button type="button" class="coffee-close" id="guestbook-close" data-i18n-attr="aria-label:guestbook.close" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <p class="coffee-lede" data-i18n="guestbook.lede">한 줄이면 충분해요. 다녀가신 흔적을 남겨 주세요.</p>
+    <ul class="gb-list" id="guestbook-list" aria-live="polite"></ul>
+    <form class="coffee-form" id="guestbook-form" novalidate>
+      <div class="field">
+        <label for="gb-nickname" data-i18n="guestbook.nickname">닉네임</label>
+        <input id="gb-nickname" name="nickname" type="text" required maxlength="30" autocomplete="nickname">
+      </div>
+      <div class="field">
+        <label for="gb-message" data-i18n="guestbook.message">남기고 싶은 말</label>
+        <textarea id="gb-message" name="message" rows="3" required minlength="2" maxlength="300"></textarea>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="gb-website">Website</label>
+        <input id="gb-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="fine coffee-privacy" data-i18n="guestbook.privacy">링크는 넣을 수 없어요. 확인 후 방명록에 표시됩니다.</p>
+      <div class="coffee-actions">
+        <button type="submit" class="btn btn-primary" data-i18n="guestbook.submit">남기기</button>
+        <p class="coffee-status" id="guestbook-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </dialog>
+
   <!-- Vercel Web Analytics: cookieless page-view counts, served from this site's own domain. -->
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
   <script src="i18n.js" defer></script>
   <script src="dashboard.js" defer></script>
   <script src="coffee-chat.js" defer></script>
+  <script src="guestbook.js" defer></script>
   <script>
     (() => {
       const root = document.documentElement;
