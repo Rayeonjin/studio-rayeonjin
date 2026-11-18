@@ -38,7 +38,7 @@ python3 -m http.server 4321 --directory .
 
 ## 커피챗 (Supabase)
 
-- 폼(`coffee-chat.js`)은 Supabase Edge Function `coffee-chat`으로 보냅니다. 프로젝트 ref: `ggnvczlkfekdcjlafvup` (서울).
+- 하단의 "커피챗" 링크(또는 `#coffee` 주소)로 여는 팝업입니다. 폼(`coffee-chat.js`)은 Supabase Edge Function `coffee-chat`으로 보냅니다. 프로젝트 ref: `ggnvczlkfekdcjlafvup` (서울).
 - 신청은 `public.coffee_chats` 테이블에 쌓입니다. RLS를 켜고 정책을 두지 않아서 공개 키로는 읽거나 쓸 수 없고, 함수(service role)만 씁니다.
 - 함수는 허용한 출처(사이트·localhost:4321)만 받고, 숨은 입력란·작성 시간·시간당 20건 제한으로 스팸을 거릅니다.
 - Telegram 알림은 시크릿이 있을 때만 보냅니다: `supabase secrets set TELEGRAM_BOT_TOKEN=… TELEGRAM_CHAT_ID=…`

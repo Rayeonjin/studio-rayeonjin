@@ -312,7 +312,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
 @media (max-width: 720px) {
   .menubar-inner { flex-wrap: wrap; height: auto; padding-top: 8px; gap: 8px 10px; }
   .menu {
-    order: 3; width: 100%; gap: 14px; white-space: nowrap; overflow-x: auto; scrollbar-width: none;
+    order: 3; width: 100%; gap: 18px; white-space: nowrap; overflow-x: auto; scrollbar-width: none;
     padding: 2px 0 9px; margin-right: -16px; padding-right: 16px;
   }
   .menu::-webkit-scrollbar { display: none; }
@@ -672,26 +672,41 @@ main { overflow-x: clip; }
 .shot-link { display: contents; cursor: zoom-in; }
 .shot-link .shot-window { cursor: zoom-in; }
 
-/* ---------- coffee chat ---------- */
-.coffee-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; max-width: 46em; }
+/* ---------- coffee chat (dialog opened from the footer) ---------- */
+.coffee-dialog {
+  width: min(520px, calc(100% - 32px)); max-height: calc(100dvh - 32px); overflow: auto;
+  margin: auto; padding: 26px 28px 28px; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 14px;
+}
+.coffee-dialog::backdrop { background: rgba(36, 29, 21, 0.42); }
+.coffee-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.coffee-head h2 { font-size: 22px; color: var(--note); }
+.coffee-close {
+  display: inline-grid; place-items: center; width: 36px; height: 36px; margin-right: -8px;
+  border: 0; border-radius: 999px; background: transparent; color: var(--ink-soft); cursor: pointer;
+}
+.coffee-close:hover { background: var(--bg-soft); color: var(--ink); }
+.coffee-close svg { width: 20px; height: 20px; }
+.coffee-lede { margin: 10px 0 22px; color: var(--ink-soft); font-size: 15.5px; }
+.coffee-form { display: grid; gap: 16px; }
 .coffee-form .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.coffee-form .field-wide { grid-column: 1 / -1; }
 .coffee-form label { font-size: 14px; font-weight: 600; color: var(--ink-soft); }
 .coffee-form input, .coffee-form textarea {
   width: 100%; font: inherit; font-size: 16px; color: var(--ink);
   background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 11px 14px;
 }
-.coffee-form textarea { resize: vertical; min-height: 128px; line-height: 1.6; }
+.coffee-form textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
 .coffee-form input::placeholder, .coffee-form textarea::placeholder { color: var(--ink-faint); }
 .coffee-form input:focus-visible, .coffee-form textarea:focus-visible { outline: 2px solid var(--note); outline-offset: 1px; border-color: transparent; }
 .coffee-form .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-.coffee-privacy { margin: -4px 0 0; }
+.coffee-privacy { margin: -2px 0 0; }
 .coffee-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
 .coffee-actions .btn { cursor: pointer; font-family: inherit; }
 .coffee-actions .btn:disabled { opacity: 0.6; cursor: progress; transform: none; }
 .coffee-status { margin: 0; font-size: 15px; color: var(--ink-soft); }
+.coffee-status:empty { display: none; }
 .coffee-status[data-state="ok"] { color: var(--ink); font-weight: 600; }
 .coffee-status[data-state="error"] { color: var(--note); }
 @media (max-width: 720px) {
-  .coffee-form { grid-template-columns: 1fr; }
+  .coffee-dialog { padding: 20px 18px 22px; }
 }
