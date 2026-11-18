@@ -35,3 +35,11 @@ python3 -m http.server 4321 --directory .
 - 제목 문구를 바꾸면 다시 만들어 주세요. 원본은 https://github.com/IBM/plex/tree/master/packages 에서 받습니다.
   `pip install fonttools brotli && python3 scripts/subset-fonts.py IBMPlexSansKR-Bold.otf IBMPlexSansSC-Bold.otf`
 - 빠진 글자는 기기의 기본 고딕으로 대체되어 보입니다.
+
+## 커피챗 (Supabase)
+
+- 폼(`coffee-chat.js`)은 Supabase Edge Function `coffee-chat`으로 보냅니다. 프로젝트 ref: `ggnvczlkfekdcjlafvup` (서울).
+- 신청은 `public.coffee_chats` 테이블에 쌓입니다. RLS를 켜고 정책을 두지 않아서 공개 키로는 읽거나 쓸 수 없고, 함수(service role)만 씁니다.
+- 함수는 허용한 출처(사이트·localhost:4321)만 받고, 숨은 입력란·작성 시간·시간당 20건 제한으로 스팸을 거릅니다.
+- Telegram 알림은 시크릿이 있을 때만 보냅니다: `supabase secrets set TELEGRAM_BOT_TOKEN=… TELEGRAM_CHAT_ID=…`
+- 배포: `supabase db push` (마이그레이션), `supabase functions deploy coffee-chat --use-api` (함수). Vercel 배포에서는 `supabase/`를 제외합니다.

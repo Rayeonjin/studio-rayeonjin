@@ -89,6 +89,7 @@
         <a href="#works" data-i18n="nav.works">작업</a>
         <a href="#dashboard" data-i18n="nav.dashboard">현황</a>
         <a href="#history" data-i18n="nav.history">연혁</a>
+        <a href="#coffee" data-i18n="nav.coffee">커피챗</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
       </nav>
       <label class="lang-picker">
@@ -293,6 +294,41 @@
       </div>
     </section>
 
+    <section id="coffee" class="wrap section">
+      <header class="section-head">
+        <p class="eyebrow">Coffee chat</p>
+        <h2 data-i18n="coffee.title">커피챗</h2>
+      </header>
+      <p class="section-lede" data-i18n="coffee.lede">작업 이야기든 만드는 과정이든, 편하게 이야기 나눠요.<br class="w"> 남겨 주신 내용을 읽어 보고 <span class="nw">연락드리겠습니다.</span></p>
+      <form class="coffee-form" id="coffee-form" novalidate>
+        <div class="field">
+          <label for="cc-name" data-i18n="coffee.name">이름 또는 닉네임</label>
+          <input id="cc-name" name="name" type="text" required maxlength="60" autocomplete="nickname">
+        </div>
+        <div class="field">
+          <label for="cc-contact" data-i18n="coffee.contact">연락처</label>
+          <input id="cc-contact" name="contact" type="text" required minlength="3" maxlength="120" autocomplete="email" data-i18n-attr="placeholder:coffee.contactHint" placeholder="이메일 또는 Telegram ID">
+        </div>
+        <div class="field field-wide">
+          <label for="cc-topic" data-i18n="coffee.topic">나누고 싶은 이야기</label>
+          <textarea id="cc-topic" name="topic" rows="5" required minlength="10" maxlength="2000"></textarea>
+        </div>
+        <div class="field field-wide">
+          <label for="cc-preference" data-i18n="coffee.preference">희망 방식·시간대 (선택)</label>
+          <input id="cc-preference" name="preference" type="text" maxlength="200" data-i18n-attr="placeholder:coffee.preferenceHint" placeholder="예: 온라인, 평일 저녁">
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="cc-website">Website</label>
+          <input id="cc-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="fine coffee-privacy field-wide" data-i18n="coffee.privacy">남겨 주신 정보는 커피챗 연락에만 씁니다.</p>
+        <div class="coffee-actions field-wide">
+          <button type="submit" class="btn btn-primary" data-i18n="coffee.submit">신청 보내기</button>
+          <p class="coffee-status" id="coffee-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+
     <section id="faq" class="wrap section">
       <header class="section-head">
         <p class="eyebrow">FAQ</p>
@@ -336,6 +372,7 @@
   <script defer src="/_vercel/insights/script.js"></script>
   <script src="i18n.js" defer></script>
   <script src="dashboard.js" defer></script>
+  <script src="coffee-chat.js" defer></script>
   <script>
     (() => {
       const root = document.documentElement;

@@ -312,7 +312,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
 @media (max-width: 720px) {
   .menubar-inner { flex-wrap: wrap; height: auto; padding-top: 8px; gap: 8px 10px; }
   .menu {
-    order: 3; width: 100%; gap: 18px; white-space: nowrap; overflow-x: auto; scrollbar-width: none;
+    order: 3; width: 100%; gap: 14px; white-space: nowrap; overflow-x: auto; scrollbar-width: none;
     padding: 2px 0 9px; margin-right: -16px; padding-right: 16px;
   }
   .menu::-webkit-scrollbar { display: none; }
@@ -671,3 +671,27 @@ main { overflow-x: clip; }
 }
 .shot-link { display: contents; cursor: zoom-in; }
 .shot-link .shot-window { cursor: zoom-in; }
+
+/* ---------- coffee chat ---------- */
+.coffee-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; max-width: 46em; }
+.coffee-form .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.coffee-form .field-wide { grid-column: 1 / -1; }
+.coffee-form label { font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+.coffee-form input, .coffee-form textarea {
+  width: 100%; font: inherit; font-size: 16px; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 11px 14px;
+}
+.coffee-form textarea { resize: vertical; min-height: 128px; line-height: 1.6; }
+.coffee-form input::placeholder, .coffee-form textarea::placeholder { color: var(--ink-faint); }
+.coffee-form input:focus-visible, .coffee-form textarea:focus-visible { outline: 2px solid var(--note); outline-offset: 1px; border-color: transparent; }
+.coffee-form .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.coffee-privacy { margin: -4px 0 0; }
+.coffee-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.coffee-actions .btn { cursor: pointer; font-family: inherit; }
+.coffee-actions .btn:disabled { opacity: 0.6; cursor: progress; transform: none; }
+.coffee-status { margin: 0; font-size: 15px; color: var(--ink-soft); }
+.coffee-status[data-state="ok"] { color: var(--ink); font-weight: 600; }
+.coffee-status[data-state="error"] { color: var(--note); }
+@media (max-width: 720px) {
+  .coffee-form { grid-template-columns: 1fr; }
+}
