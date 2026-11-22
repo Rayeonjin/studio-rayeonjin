@@ -1,6 +1,6 @@
 {
   "org": "Rayeonjin",
-  "generatedAt": "2026-11-18T04:40:15.105Z",
+  "generatedAt": "2026-11-22T19:33:36.978Z",
   "totals": {
     "works": 3,
     "versions": 19,
@@ -8,11 +8,6 @@
     "lastPush": "2026-11-17T16:45:22Z"
   },
   "weekly": [
-    {
-      "weekStart": "2026-08-30T15:00:00.000Z",
-      "total": 0,
-      "byRepo": {}
-    },
     {
       "weekStart": "2026-09-06T15:00:00.000Z",
       "total": 7,
@@ -88,6 +83,11 @@
         "MemoWeaver": 7,
         "Uncomew": 8
       }
+    },
+    {
+      "weekStart": "2026-11-22T15:00:00.000Z",
+      "total": 0,
+      "byRepo": {}
     }
   ],
   "repos": [
