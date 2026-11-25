@@ -1,5 +1,5 @@
 // Guestbook for the studio site.
-//   GET  -> the latest approved entries (nickname, message, date only)
+//   GET  -> the latest approved entries and public studio replies
 //   POST -> stores a new entry (shown right away) and tells the Telegram channel
 //
 // Deployed with --no-verify-jwt: the site calls it without a key, so this
@@ -25,6 +25,7 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const TG_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
 const TG_CHAT = Deno.env.get("TELEGRAM_CHAT_ID");
+const REPLIES_ENABLED = Deno.env.get("TELEGRAM_GUESTBOOK_ENABLED") === "1";
 
 function cors(origin: string | null): Record<string, string> {
   const allow = origin && ALLOWED_ORIGINS.has(origin) ? origin : "https://studio-rayeonjin.vercel.app";
@@ -68,6 +69,10 @@ async function notify(row: { id: number; nickname: string; message: string; lang
     "",
     row.message,
     "",
+    ...(REPLIES_ENABLED ? [
+      "이 알림에 텍스트로 답장하면 홈페이지에 Studio RAYEONJIN의 공개 답글로 등록됩니다.",
+      "알림방 운영자만 답글을 남길 수 있습니다. 답글은 2,000자까지이며 텔레그램에서 수정하면 함께 반영됩니다.",
+    ] : []),
     "내리려면 Supabase의 guestbook 표에서 이 글의 status를 hidden으로 바꿔 주세요.",
   ].join("\n");
   const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
@@ -75,7 +80,17 @@ async function notify(row: { id: number; nickname: string; message: string; lang
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ chat_id: TG_CHAT, text, disable_web_page_preview: true }),
   });
-  return res.ok;
+  if (!res.ok) return false;
+  const notification = await res.json();
+  if (!notification.ok || !notification.result?.message_id) return false;
+  const linked = await rest(`guestbook?id=eq.${row.id}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      telegram_chat_id: notification.result.chat.id,
+      telegram_message_id: notification.result.message_id,
+    }),
+  });
+  return linked.ok;
 }
 
 Deno.serve(async (req) => {
@@ -85,7 +100,7 @@ Deno.serve(async (req) => {
 
   if (req.method === "GET") {
     const res = await rest(
-      `guestbook?select=id,nickname,message,created_at&status=eq.approved&order=created_at.desc&limit=${LIST_SIZE}`,
+      `guestbook?select=id,nickname,message,created_at,replies:guestbook_replies(id,message,created_at)&status=eq.approved&replies.status=eq.approved&replies.order=created_at.asc,id.asc&order=created_at.desc&limit=${LIST_SIZE}`,
     );
     if (!res.ok) {
       console.error("list failed", res.status, await res.text());

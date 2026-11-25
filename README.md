@@ -50,3 +50,22 @@ python3 -m http.server 4321 --directory .
 - 새 글은 `public.guestbook` 테이블에 `status = 'approved'`로 쌓여 바로 보이고, Telegram 채널로 알림이 갑니다. 내리려면 Supabase 대시보드 Table Editor에서 그 글의 `status`를 `hidden`으로 바꿉니다.
 - 링크가 들어간 글은 거절하고, 숨은 입력란·작성 시간·시간당 30건 제한으로 스팸을 거릅니다. RLS를 켜고 정책을 두지 않아 공개 키로는 테이블을 읽거나 쓸 수 없습니다.
 - 배포: `supabase db push --remote`, `supabase functions deploy guestbook --use-api`.
+
+### 텔레그램에서 스튜디오 답글 남기기
+
+- 기존 비공개 채널이나 그룹에서 **방명록 알림에 답장**하면 원문 아래에 `Studio RAYEONJIN` 답글로 공개됩니다. 커피챗 알림이나 일반 대화는 방명록에 등록되지 않습니다. 채널은 토론 그룹 없이 채널 게시물의 직접 답장을 받습니다.
+- 채널에서는 해당 채널 이름으로 게시된 답장만 받으며, 게시 권한을 가진 채널 운영자가 작성합니다. 그룹에서는 관리자만 등록할 수 있고, 특정 운영자로 더 좁히려면 `TELEGRAM_ADMIN_USER_IDS`에 숫자 사용자 ID를 쉼표로 구분해 설정합니다. 그룹의 익명 관리자 메시지는 받지 않습니다. 채널 메시지는 개인 발신자가 표시되지 않으므로 사용자 ID 허용 목록과 함께 사용할 수 없습니다.
+- 답글은 1~2,000자 평문이며, 텔레그램에서 답글 메시지를 편집하면 본문도 수정됩니다. 중복 전달은 한 번만 등록합니다. 텔레그램에서 삭제한 메시지는 자동 삭제되지 않습니다.
+- 답글의 공개 필드는 본문과 작성 시각뿐입니다. 텔레그램 이름·사용자 ID는 저장하거나 공개하지 않습니다. 연결에 필요한 그룹·메시지 ID는 DB에만 보관하며 공개 API에서 제외합니다.
+- 예전에 받은 알림에도 답장할 수 있습니다. 그룹에서는 같은 봇이 보낸 원래 방명록 알림인지, 채널에서는 같은 채널의 원래 알림인지 확인하고 연결합니다. 다른 대화로 전달된 메시지는 받지 않습니다.
+- 팝업을 다시 열면 최신 답글이 표시됩니다. 답글만 내리려면 `guestbook_replies.status`를 `hidden`으로 바꿉니다. 원문을 내리면 그 아래 답글도 함께 보이지 않습니다.
+
+배포 순서:
+
+1. `node --test tests/*.test.js`
+2. `supabase db push --remote` (기존 글을 보존하고 답글 테이블·알림 연결 열만 추가)
+3. `supabase functions deploy telegram-guestbook --use-api`
+4. `node scripts/configure-telegram-guestbook.mjs <project-ref>`
+5. `supabase functions deploy guestbook --use-api`, 이후 프런트엔드 배포
+
+설정 스크립트는 기존 프로젝트 API 키나 봇 토큰을 조회하지 않습니다. 전용 웹훅 비밀값을 새로 만들고, 별도의 일회성 설정 키로 서버 안에서 봇을 연결한 뒤 설정 키와 임시 파일을 폐기합니다. 이미 다른 서비스에 등록된 봇 웹훅이 있으면 덮어쓰지 않고 중단합니다. 공개 `telegram-guestbook` 엔드포인트는 Telegram의 비밀 헤더를 검사하며, 일반 방문자는 답글을 쓸 수 없습니다. 연결이 성공했을 때만 `TELEGRAM_GUESTBOOK_ENABLED=1`을 설정해 알림에 공개 답글 안내를 추가합니다. 활성화 이전에 작성한 개인 답장은 대기열에 남아 있어도 공개하지 않습니다.

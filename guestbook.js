@@ -52,6 +52,32 @@
       text.className = "gb-text";
       text.textContent = e.message;
       li.append(head, text);
+      if (Array.isArray(e.replies) && e.replies.length) {
+        const replies = document.createElement("ul");
+        replies.className = "gb-replies";
+        replies.setAttribute("aria-label", t("guestbook.studioReplies"));
+        for (const reply of e.replies) {
+          const item = document.createElement("li");
+          item.className = "gb-reply";
+          const replyHead = document.createElement("p");
+          replyHead.className = "gb-head";
+          const author = document.createElement("strong");
+          author.textContent = "Studio RAYEONJIN";
+          const badge = document.createElement("span");
+          badge.className = "gb-reply-label";
+          badge.textContent = t("guestbook.studioReply");
+          const repliedAt = document.createElement("time");
+          repliedAt.dateTime = reply.created_at;
+          repliedAt.textContent = fmt.format(new Date(reply.created_at));
+          replyHead.append(author, badge, repliedAt);
+          const body = document.createElement("p");
+          body.className = "gb-text";
+          body.textContent = reply.message;
+          item.append(replyHead, body);
+          replies.append(item);
+        }
+        li.append(replies);
+      }
       return li;
     }));
   };

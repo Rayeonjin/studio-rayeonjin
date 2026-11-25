@@ -435,3 +435,7 @@ verify_jwt = false
 [functions.guestbook]
 # The site calls it without a key; the function validates requests itself.
 verify_jwt = false
+
+[functions.telegram-guestbook]
+# Telegram uses its webhook secret instead of a Supabase JWT.
+verify_jwt = false
